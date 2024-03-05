@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../OpenHackathon"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"complex": "cpp"
+		}
+	}
+}
