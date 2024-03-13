@@ -76,3 +76,115 @@ complex c_sub_int(complex c, int i ){
     c.real -= i;
     return c;
 }
+
+//--------------------------------------
+
+void matrix_free(matrix m){
+    free(m.data)
+}
+matrix zeros(size_t nr, size_t nc){
+    matrix m = {
+        .nr = nr, 
+        .nc = nc,
+        .data = (double *)malloc(nr*nc * sizeof(double))
+        };
+    for(size_t i = 0; i <nr, i++){
+        for(size_t j = 0; j <nc, j++){
+            m.data[i][j] = 0;
+        }
+    }
+    return m;
+}
+matrix eyes(size_t n){
+    matrix m = {
+        .nr = n, 
+        .nc = n,
+        .data = (double *)malloc(nr*nc * sizeof(double))
+        };
+
+    for(size_t i = 0; i <m.nr, i++){
+        for(size_t j = 0; j <m.nc, j++){
+            m.data[i][j] = (int)(i==j);
+        }
+    }
+    return m;
+}
+
+
+void mat_scale(double s, matrix m1, matrix m2){
+    for(size_t i = 0; i <m1.nr, i++){
+        for(size_t j = 0; j <m1.nc, j++){
+            m2.data[i][j] = s*m1.data[i][j];
+        }
+    }
+}
+
+void mat_add(matrix m1, matrix m2, matrix m3){
+    //Error m1, m2, m3 dimension check;
+
+    for(size_t i = 0; i <m.nr, i++){
+        for(size_t j = 0; j <m.nc, j++){
+            m3.data[i][j] = m1.data[i][j] + m2.data[i][j];
+        }
+    }
+}
+void mat_sub(matrix m1, matrix m2, matrix m3){
+    //Error m1, m2, m3 dimension check;
+
+    for(size_t i = 0; i <m.nr, i++){
+        for(size_t j = 0; j <m.nc, j++){
+            m3.data[i][j] = m1.data[i][j] - m2.data[i][j];
+        }
+    }
+}
+
+void mat_mul(matrix m1, matrix m2, matrix m3){
+    //Error m1, m2, m3 dimension check;
+
+    for(size_t i = 0; i <m.nr, i++){
+        for(size_t j = 0; j <m.nc, j++){
+            m3.data[i][j] = m1.data[i][j] * m2.data[i][j];
+        }
+    }
+}
+void mat_div(matrix m1, matrix m2, matrix m3){
+    //Error m1, m2, m3 dimension check;
+
+    for(size_t i = 0; i <m1.nr, i++){
+        for(size_t j = 0; j <m1.nc, j++){
+            m3.data[i][j] = m1.data[i][j] / m2.data[i][j];
+        }
+    }
+}
+
+matrix mat_prod(matrix m1, matrix m2, matrix m3){
+    size_t i, j, k;
+
+    for(i =0; i< m1.nr; i++){
+        for(j =0; j< m2.nc; j++){
+            double s = 0;
+            for(k =0; k< m1.nc; k++){
+                s+= (m1[i][k] * m2[k][j]);
+            }
+            m3[i][j] = s;
+        }
+    }
+    return m3
+}
+
+double mat_trace(matrix m){
+    double tr = 0.;
+    for(size_t i = 0; i < m.nr; i++){
+        tr += m.data[i][i];
+    }
+    return tr;
+}
+matrix mat_transpose(matrix m1, matrix m2){
+    for(size_t i = 0; i <m1.nr, i++){
+        for(size_t j = 0; j <m1.nc, j++){
+            m2.data[j][i] = m1.data[i][j]
+        }
+    }
+    return m2;
+}
+double mat_norm(matrix);

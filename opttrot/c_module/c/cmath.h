@@ -44,18 +44,19 @@ void matrix_free(matrix);
 matrix zeros(size_t nr, size_t nc);
 matrix eyes(size_t n);
 
+void mat_scale(double, matrix, matrix);
 void mat_add(matrix, matrix, matrix);
 void mat_sub(matrix, matrix, matrix);
-void mat_scale(matrix, matrix, matrix);
 void mat_mul(matrix, matrix, matrix);
 void mat_div(matrix, matrix, matrix);
 
-void mat_prod(matrix, matrix, matrix);
+matrix mat_prod(matrix, matrix, matrix);
 
 double mat_trace(matrix);
-double mat_transpose(matrix, matrix);
+matrix mat_transpose(matrix, matrix);
 double mat_norm(matrix);
 
+//--------------------------------------
 void c_matrix_free(complex_matrix);
 complex_matrix c_zeros(size_t nr, size_t nc);
 complex_matrix c_eyes(size_t n);
