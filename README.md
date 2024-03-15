@@ -4,7 +4,8 @@ Implmented routines about optimizing trotterization circuit of the given Hamilto
 
 * Basic Pauli-group algebra based on bit-string written in C.
 * Fast Pauli-polynomial generation of the given Hamiltonian.
-* 
+* Accelerated Hamiltonian decomposition.
+* Pauli code and matrix bijective transformation.
 
 ## Z2xZ2 representation of Pauli-group.
 
@@ -21,8 +22,9 @@ Therefore, for $2^n$ bit system, we have capcacity for $2^{n -1}$. In 2024, comm
 * Pauli-term synthesis
 * General Hamiltonian to coefficient, xz-code and reverse.
 
-## 
+## Interface for general optimizer 
 
 Thereare many optimizer and solving algorithms for classic max-clique and 
 quantum optimizer such as D-Wave and QuERA. 
-*Opttrot* provides general interface to those optimizers.
+*Opttrot* provides general interface to those optimizers, 
+Currently, Networks, and D-Wave optimizers could be used in Opttrot.
