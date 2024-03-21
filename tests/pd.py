@@ -41,7 +41,7 @@ def PauliDecomposition(matrix,sparse=False,PauliStringInit="",output="Lists"):
 	if padDim != 0:
 		if sparse:
 			indxptr = np.pad(matrix.indptr, ((0, padDim), (0, padDim)))
-			matrix = csr_matrix((matrix.data, matrix.indices, indxptr))
+			matrix = sp.csr_matrix((matrix.data, matrix.indices, indxptr))
 		else:
 			matrix = np.pad(matrix, ((0,padDim), (0,padDim)))
 	decomposition = []
