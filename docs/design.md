@@ -1,8 +1,18 @@
+## XZ code
 
 
+## Tensorized Decomposition
 
 
-C-Python interfaces
+With xz-code, `nx, nz`, the index of the corresponding Pauli term is determined with single bit opeartor, where, `nr=nz` and `nc=nx^nz`. 
+Reverse transformation is defined as `nz=nr` and `nx = nr^nc`.
+
+```
+b = a^(a^b)
+```
+
+
+## C-Python interfaces
 
 * ctypes
 * Cython
