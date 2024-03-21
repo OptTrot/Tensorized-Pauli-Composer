@@ -14,6 +14,16 @@ $$n_{x}^k = n_{x}^i {}^\wedge n_{x}^j\\ n_{z}^k = n_{z}^i {}^\wedge n_{z}^j$$
 
 where, ${}^\wedge$ is a XOR binary operator.
 
+### Tensor Product
+
+$$P_i \otimes P_j = P_k$$
+
+* $P_i = (n_{x}^i, n_{z}^i)$
+* $P_j = (n_{x}^j, n_{z}^j)$
+* $P_k = (n_{x}^k, n_{z}^k)$
+
+$$n_{x}^k = (2^l \cdot n_{x}^i)$$
+
 ### Commutator
 
 See, Reggio et al.
