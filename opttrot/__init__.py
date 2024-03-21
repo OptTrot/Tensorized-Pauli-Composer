@@ -23,9 +23,12 @@ import pandas as pd
 
 from opttrot.utils import (
     commute_reggio_df, integer_order_map, 
+    ternsorized_decomposition,
     frobenius_inner, krons, get_coef,
     get_decomposition, pstr_to_matrix,
     pstr_to_xz_fam_code,
+    xz_fam_code_to_pstr,
+    index_xzcode,
     pauli_X, pauli_Y, pauli_Z, I)
 
 
@@ -134,7 +137,8 @@ class Hamiltonian:
     @classmethod
     def from_latin_matrix(cls:Hamiltonian, 
                       l_matrix:np.matrix, 
-                      xz_famileis:Tuple[Iterable, Iterable])->Hamiltonian: # In progress
+                      xz_famileis:Tuple[Iterable, Iterable])->Hamiltonian: 
+        # In progress
         pass
     @classmethod
     def from_pauli_polynomial(cls:Hamiltonian, 
@@ -153,11 +157,10 @@ class Hamiltonian:
         
         for key in keys:
             H += p_dict[key] * pstr_to_matrix(key)
-            
-        
         return cls(np.asmatrix(H), p_poly, *args)
     @classmethod
-    def from_data(cls:Hamiltonian, file_path)->Hamiltonian: # In progress
+    def from_data(cls:Hamiltonian, file_path)->Hamiltonian: 
+        # In progress
         pass
     #------------------------------
     # Basic utils for hamiltonian analysis
@@ -178,17 +181,39 @@ class Hamiltonian:
             result += coef*pstr_to_matrix(pstr)
         return result
     @staticmethod
-    def H_to_p_poly(H, tol=float_tol, include_zeros=False):
-        n = len(bin(H.shape[0])[3:])
-        p_mat, p_str = Hamiltonian.generate_pauli_terms(n)
+    def H_to_p_poly(H, tol=float_tol, include_zeros=False)->dict:
+        """Convert Hermit matrix to pauli-dict polynomial.
+
+        Args:
+            H (_type_): Hamiltonian Hermit matrix.
+            tol (_type_, optional): Precision tolerance value. Defaults to float_tol.
+            include_zeros (bool, optional): Including zero coefficient terms or not. Defaults to False.
+
+        Returns:
+            dict: Pauli term and coefficient dictionary.
+        """
+        n1, n2 = H.shape
+        assert n1 == n2, "The given matrix must be a square matrix."
         poly = {}
-        for p_m, p_str in zip(p_mat, p_str):
-            coef = frobenius_inner(p_m, H)
-            coef = 0 if np.absolute(coef) < tol else coef
-            if include_zeros:
-                poly[p_str] = coef
-            elif coef != 0:
-                poly[p_str] = coef
+        n = int(np.log2(n1))
+        H_decom = ternsorized_decomposition(H)
+        nr, nc = H_decom.shape
+
+        for i in range(nr):
+            for j in range(nc):
+                coef = H_decom[i, j]
+                coef = 0 if np.absolute(coef) < tol else coef
+                if include_zeros or coef != 0:
+                    poly[xz_fam_code_to_pstr(index_xzcode(i,j), n)] = coef
+        #n = len(bin(H.shape[0])[3:])
+        #p_mat, p_str = Hamiltonian.generate_pauli_terms(n)
+        #for p_m, p_str in zip(p_mat, p_str):
+        #    coef = frobenius_inner(p_m, H)
+        #    coef = 0 if np.absolute(coef) < tol else coef
+        #    if include_zeros:
+        #        poly[p_str] = coef
+        #    elif coef != 0:
+        #        poly[p_str] = coef
         return poly
     @staticmethod
     def p_poly_to_latin(p_poly:dict, full=False)->Tuple[np.ndarray, list, list]:

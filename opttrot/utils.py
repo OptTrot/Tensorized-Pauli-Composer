@@ -17,13 +17,14 @@ def frobenius_inner(A, B): # Frobenius inner product.
 #--------------------------------------------------------
 
 def get_decomposition(pauli_basis:dict)->pd.DataFrame:
-    """Convert Pauli term and coefficient dictionary to dataframe
+    """Convert Pauli term and coefficient dictionary to dataframe with xz-code.
 
     Args:
-        pauli_basis (dct): Pauli polynomial of dictionary form. {"Pauli-term": coefficition}
+        pauli_basis (dct): Pauli polynomial of dictionary form. 
+        {"Pauli-term": coefficition}
 
     Returns:
-        pandas.DataFrame: [Pstring", "type", "Z", "X", "Coef"]
+        pandas.DataFrame: ["Pstring", "type", "Z", "X", "Coef"]
     """
     p_dict = {}
     for p in pauli_basis.keys():
@@ -229,6 +230,34 @@ def commute_reggio_df(s):
     b = bin(s.iloc[1] & s.iloc[2]).count("1")%2
     return a == b
 
+def ternsorized_decomposition(H):
+    n1, n2 = H.shape
+    assert n1 == n2, "The given matrix must be a square matrix."
+    n= int(np.log2(n1))
+    l = n1
+    for i in range(n):
+        m = int(2**i) # Number of submatrix
+        l = int(l/2) # Sub matrix size, square
+        for j in range(m):
+            for k in range(m):
+                num_i = j*(2*l) # Initial position of sub matrix row
+                num_j = k*(2*l) # Initial position of sub matrix column
+
+                # I-Z
+                H[num_i: num_i+l, num_j:num_j+l]        += H[num_i+l: num_i+2*l, num_j+l:num_j+2*l] 
+                H[num_i+l: num_i+2*l, num_j+l:num_j+2*l] = H[num_i: num_i+l, num_j:num_j+l] - 2*H[num_i+l: num_i+2*l, num_j+l:num_j+2*l]
+                # X-Y
+                H[num_i: num_i+l, num_j+l:num_j+2*l] += H[num_i+l: num_i+2*l, num_j:num_j+l] 
+                H[num_i+l: num_i+2*l, num_j:num_j+l] =  H[num_i: num_i+l, num_j+l:num_j+2*l] - 2*H[num_i+l: num_i+2*l, num_j:num_j+l]
+                H[num_i+l: num_i+2*l, num_j:num_j+l] *= -1j
+        
+    H *= (1/(2**n))
+    return H
+def index_xzcode(i, j):
+    return i^j, i
+def xzcode_index(nx, nz):
+    return nz, nx^nz
+#------------------------------------------------
 def integer_order_map(int_list):
     sorted_unique = np.unique(np.array(int_list))
     return {num: idx for idx, num in enumerate(sorted_unique)}
