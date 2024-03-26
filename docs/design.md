@@ -22,7 +22,8 @@ $$P_i \otimes P_j = P_k$$
 * $P_j = (n_{x}^j, n_{z}^j)$
 * $P_k = (n_{x}^k, n_{z}^k)$
 
-$$n_{x}^k = (2^l \cdot n_{x}^i)$$
+$$n_{x}^k = (2^l \cdot n_{x}^i)\vee n_{x}^j$$
+$$n_{z}^k = (2^l \cdot n_{z}^i)\vee n_{z}^j$$
 
 ### Commutator
 
