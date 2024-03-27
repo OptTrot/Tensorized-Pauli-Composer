@@ -22,8 +22,8 @@ $$P_i \otimes P_j = P_k$$
 * $P_j = (n_{x}^j, n_{z}^j)$
 * $P_k = (n_{x}^k, n_{z}^k)$
 
-$$n_{x}^k = (2^l \cdot n_{x}^i)\vee n_{x}^j$$
-$$n_{z}^k = (2^l \cdot n_{z}^i)\vee n_{z}^j$$
+$$n_{x}^k = (2^j \cdot n_{x}^i)\vee n_{x}^j$$
+$$n_{z}^k = (2^j \cdot n_{z}^i)\vee n_{z}^j$$
 
 ### Commutator
 
@@ -44,10 +44,10 @@ $$Count(n_x \& n_z, 1)$$
 
 See Hantzko et al, Tensorized Pauli decomposition algorithm.
 
-The algorithm decompose the given Hamiltonian only use iterative submatrix addtion and subtraction. The final result is a coefficient matrix whose location indicates corresponding Pauli string.
-
-With xz-code, `nx, nz`, the index of the corresponding Pauli term is determined with single bit opeartor, where, `nr=nz` and `nc=nx^nz`. 
-Reverse transformation is defined as `nz=nr` and `nx = nr^nc`.
+The algorithm decompose the given Hamiltonian only use iterative submatrix addtion and subtraction. The final result is a coefficient matrix whose location indicates corresponding Pauli string. 
+In the original paper, the chasing the corresponding Pauli-term was achieved by adding characters to string variable.
+However, XZ code, `nx, nz`, uniquely determines a corresponding ij index on coefficient matrix by single bit opeartor, where, `nr=nz` and `nc=nx^nz`. 
+Reverse transformation is also defined as `nz=nr` and `nx = nr^nc`.
 
 Note that, the property of XOR operator is
 
