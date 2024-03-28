@@ -230,7 +230,15 @@ def commute_reggio_df(s):
     b = bin(s.iloc[1] & s.iloc[2]).count("1")%2
     return a == b
 
-def ternsorized_decomposition(H):
+def tp_decomposition(H:np.matrix)-> np.matrix:
+    """Tensorized decomposition of hermit matrix into pauli terms.
+
+    Args:
+        H (np.matrix): Hermit matrix.
+
+    Returns:
+        np.matrix: Coefficient matrix of the given matrix.
+    """
     n1, n2 = H.shape
     assert n1 == n2, "The given matrix must be a square matrix."
     n= int(np.log2(n1))

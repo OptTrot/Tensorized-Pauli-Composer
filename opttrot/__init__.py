@@ -23,7 +23,7 @@ import pandas as pd
 
 from opttrot.utils import (
     commute_reggio_df, integer_order_map, 
-    ternsorized_decomposition,
+    tp_decomposition,
     frobenius_inner, krons, get_coef,
     get_decomposition, pstr_to_matrix,
     pstr_to_xz_fam_code,
@@ -196,7 +196,7 @@ class Hamiltonian:
         assert n1 == n2, "The given matrix must be a square matrix."
         poly = {}
         n = int(np.log2(n1))
-        H_decom = ternsorized_decomposition(H)
+        H_decom = tp_decomposition(H)
         nr, nc = H_decom.shape
 
         for i in range(nr):
