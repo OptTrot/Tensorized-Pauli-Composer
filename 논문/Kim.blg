@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Kim.aux
+The style file: unsrt.bst
+Database file #1: references.bib
+Warning--entry type for "cirq_developers_2023_10247207" isn't style-file defined
+--line 152 of file references.bib
+Warning--entry type for "kim_2024_11048922" isn't style-file defined
+--line 210 of file references.bib
+Warning--empty journal in hantzko_tensorized_2023
+Warning--empty journal in koska_tree-approach_2024
+You've used 13 entries,
+            1791 wiz_defined-function locations,
+            516 strings with 7064 characters,
+and the built_in function-call counts, 3168 in all, are:
+= -- 181
+> -- 317
+< -- 0
++ -- 111
+- -- 98
+* -- 269
+:= -- 582
+add.period$ -- 38
+call.type$ -- 13
+change.case$ -- 12
+chr.to.int$ -- 0
+cite$ -- 15
+duplicate$ -- 95
+empty$ -- 243
+format.name$ -- 98
+if$ -- 635
+int.to.chr$ -- 0
+int.to.str$ -- 13
+missing$ -- 9
+newline$ -- 67
+num.names$ -- 13
+pop$ -- 57
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 42
+stack$ -- 0
+substring$ -- 80
+swap$ -- 11
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 19
+width$ -- 15
+write$ -- 132
+(There were 4 warnings)
