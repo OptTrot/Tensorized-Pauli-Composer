@@ -3,35 +3,31 @@
 # Fast matrix reconstruction of general combination of Clifford algebra elements
 
 
-Cliffod algebra now becomes dominant approach in various fields
-to analyze complicated systems such as computer graphics, and robotics.
-In physics, it has been a fundamental tool reprsent the algebra of 
-quantum quantities and has a tremedous applications in mathematical physics.
-<!-- Quantum field operator, computer graphics, robotices example references -->
-With Clifford/Geometric algebra approach, 
-the equations contain more information about geometry and the system
-that did not appeared in convenience linear algebra system.
-Even computationally hard problems also formulated by Cliiford equations.
-<!-- Clifford algebra 로 NP hard 문제를 만든 논문이 있다. -->
+Clifford algebra has become a dominant approach in various fields for analyzing complex
+systems, including computer graphics and robotics. 
+In physics, it serves as a fundamental tool for representing the algebra of
+quantum quantities and has extensive applications in mathematical physics.
 
-However, in high dimension, calculation of Clifford algebra system 
-requires significantly large resources in both time and space.
-It is caused by the its higher dimension inherited in the algebra.
+The algebra is not only used to replace linear algebra-based methods but is also served to
+ study another approach in linear algebra \cite{Matrix Exponential via Clifford Algebras}.
+Conversely, by utilizing matrix representations, we can define general functions and inverses
+within Clifford algebra. Thus, both matrix representation and the Clifford approach are
+crucial in the study of linear and Clifford algebra systems, both practically and theoretically.
 
-Even with the highly optimized framework,
-matrix based method could show better time cost than the geometric based algorithm.
-For example, in the case that rapidly applying same 
-transformation for tremendous objects, the matrix based method 
-has a benenfit. 
-However, the initializing of the matrices was a bottelneck 
-of the algorithm.
+From a computational perspective, the matrix representation of Clifford elements offers 
+advantages in terms of speed. Due to the inherently higher dimensions of the algebra, its time
+ complexity is significantly greater than that of matrix calculations. Consequently, developing
+efficient implementations of Clifford algebra systems is an important area of research in 
+computer science. Even with highly optimized frameworks, matrix-based methods can demonstrate 
+better performance in terms of time efficiency compared to geometric-based algorithms. 
+For instance, when rapidly applying the same transformation to a large number of objects,
+matrix-based methods have the advantage, with the only bottleneck being the matrix 
+initialization process.
 
-Therefore, practical calculation of the clifford algebra requires 
-switching the representation by the situation to acclerate the overall
-speed of the algorithm.
-In the paper, we constructed an inverse algorithm to
-generate a marix representation of general elements of Clifford algebra,
-based on generalized Pauli element schema.
+Therefore, practical computation with Clifford algebra often requires switching representations depending on the specific situation to optimize the overall speed of the algorithm. 
+In this paper, we present an inverse algorithm to generate a matrix representation of general elements of Clifford algebra, based on a generalized Pauli element schema. 
+The method integrates tensorized decomposition with the symplectic representation of generalized Pauli elements, which is common in Clifford frameworks as binary tree method.
+
 In general case, matrix reconstruction routines 
 were *single element reconstruction* algorithm.
 Meanwhile, in here, the method is for general elements.
@@ -44,9 +40,6 @@ a + b i & c+ di\\
 \end{bmatrix}
 $$
 
-This is a method to construct a tensor product to the all elements 
-in the given 
-
 The paper consist of 3 parts. The first is reviewing a tensorized 
 decomposition algorithm of hermit matrix into generalized Pauli matrices.
 In second part, we will construct a coefficient matrix with only Pauli element index
@@ -57,6 +50,8 @@ construct general Clifford algebra elements.
 ## Matrix representation of Clifford algebra
 
 ## Hamiltonian decomposition problem
+
+Beside to the hermit matrix as 
 
 ### Decomposition algorithm
 
@@ -85,7 +80,11 @@ from Pauli polynomial and reconstruct the overall matrix at once.
 
 Naive
 
-## Application to represent general Clifford algebra element
+## Applications 
 
-### CL(0, 2)
+### Hermit matrix construction from Pauli polynomial
+
+### Represent general Clifford algebra elements
+
+#### CL(0, 2)
 

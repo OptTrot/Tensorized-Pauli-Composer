@@ -1,17 +1,21 @@
 This is BibTeX, Version 0.99d (TeX Live 2023)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: min.aux
+The top-level auxiliary file: preprint.aux
+White space in argument---line 17 of file preprint.aux
+ : \citation{Matrix
+ :                  Exponential via Clifford Algebras}
+I'm skipping whatever remains of this command
 The style file: unsrt.bst
 Database file #1: references.bib
 Warning--entry type for "cirq_developers_2023_10247207" isn't style-file defined
---line 151 of file references.bib
+--line 301 of file references.bib
 Warning--entry type for "kim_2024_11048922" isn't style-file defined
---line 209 of file references.bib
+--line 417 of file references.bib
 Warning--empty journal in hantzko_tensorized_2023
 Warning--empty journal in koska_tree-approach_2024
 You've used 13 entries,
             1791 wiz_defined-function locations,
-            516 strings with 7064 characters,
+            516 strings with 7074 characters,
 and the built_in function-call counts, 3168 in all, are:
 = -- 181
 > -- 317
@@ -50,4 +54,4 @@ warning$ -- 2
 while$ -- 19
 width$ -- 15
 write$ -- 132
-(There were 4 warnings)
+(There was 1 error message)

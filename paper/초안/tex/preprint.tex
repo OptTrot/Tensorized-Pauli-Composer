@@ -36,7 +36,7 @@
 
 % Update your Headers here
 \fancyhead[LO]{Convolution}
-% \fancyhead[RE]{Firstauthor and Secondauthor} % Firstauthor et al. if more than 2 - must use \documentclass[twoside]{article}
+% \fancyhead[RE]{Firstauthor and Secondauthor} % First author et al. if more than 2 - must use \documentclass[twoside]{article}
 
 
 \newtheorem*{note}{Note}
@@ -57,7 +57,7 @@
 
 
 %% Title
-\title{The fast matrix composition of Pauli polynomial.
+\title{Fast matrix reconstruction of general combination of Clifford algebra elements
 %%%% Cite as
 %%%% Update your official citation here when published 
 %\thanks{\textit{\underline{Citation}}: 
@@ -99,10 +99,10 @@
 \begin{abstract}
 
 %===== 1st Abstract ====
-% We studied the relationship between a proper coefficient matrix and XZ-simplex representation of
+% We studied the relationship between a proper coefficient matrix and XZ-symplectic representation of
 % each Pauli terms to manipulate Hamiltonian as Pauli polynomial. Based on Tensoried decomposition
-% algorithm by Hantzko et al, the simplex representation is a specific index of the coefficient matrix
-% depending on the chosen basis. A binary conversion between the element index and the simplex
+% algorithm by Hantzko et al, the symplectic representation is a specific index of the coefficient matrix
+% depending on the chosen basis. A binary conversion between the element index and the symplectic
 % representation was proposed and the composition algorithm for matrix representation of Pauli-
 % polynomial based on the coeeficient matrix was designed. Importantly, our algorithm applies to
 % coefficient matrices that represent complete Pauli polynomials, not merely single Pauli terms. This
@@ -133,7 +133,7 @@ group structure representation.
 With coefficient elements and thier indexes on the matrix,
 we can simultaneously manipulate the group and linear structure,
 more efficiently than the standard matrix representation of Pauli terms.
-The construction of the matrix is based on XZ simplex representation of 
+The construction of the matrix is based on XZ symplectic representation of 
 each Pauli terms in the polynomial. 
 Moreover, Pauli polynomial could be represented with a single complex matrix.
 We investigated two composition algorithms based on the coefficient matrix and 
@@ -158,19 +158,45 @@ single term construction method.
     
 
 \section{Introduction}
-%This research demonstrates the proper mapping of Pauli terms from their simplex representation to the coefficient matrix and its fast composition to the matrix form. 
-%The coefficient matrix is a proper basis representation of the Pauli polynomial preserving the coefficients of the corresponding Pauli terms. 
-%By using the mapping from the simplex representation of Pauli terms and the coefficient matrix, we can manipulate Pauli terms more efficiently in the matrix vector space.
 
-% In the quantum computing, a conversion between 
-% Hamiltonian and Pauli polynomial is one of the fundamental routine for analysis of 
-% the given system and construct the evolution operator and optimization.%\cite{}.
+Clifford algebra has become a dominant approach in various fields for analyzing complex
+systems, including computer graphics and robotics. 
+In physics, it serves as a fundamental tool for representing the algebra of
+quantum quantities and has extensive applications in mathematical physics.
 
-In quantum computing, converting between the Hamiltonian and Pauli polynomials is fundamental 
-for both analyzing the system and constructing the evolution operator and its optimization.
-Since the Pauli polynomial indicates the local structures of the system,
-and Hamiltonian with Hermitian matrix form shows overall characteristics.
-% What is an "overall characteristics".
+The algebra is not only used to replace linear algebra-based methods but is also served to
+ study another approach in linear algebra \cite{Matrix Exponential via Clifford Algebras}.
+Conversely, by utilizing matrix representations, we can define general functions and inverses
+within Clifford algebra. Thus, both matrix representation and the Clifford approach are
+crucial in the study of linear and Clifford algebra systems, both practically and theoretically.
+
+From a computational perspective, the matrix representation of Clifford elements offers 
+advantages in terms of speed. Due to the inherently higher dimensions of the algebra, its time
+ complexity is significantly greater than that of matrix calculations. Consequently, developing
+efficient implementations of Clifford algebra systems is an important area of research in 
+computer science. Even with highly optimized frameworks, matrix-based methods can demonstrate 
+better performance in terms of time efficiency compared to geometric-based algorithms. 
+For instance, when rapidly applying the same transformation to a large number of objects,
+matrix-based methods have the advantage, with the only bottleneck being the matrix 
+initialization process.
+
+
+Therefore, practical computation with Clifford algebra often requires switching representations depending on the specific situation to optimize the overall speed of the algorithm. 
+In this paper, we present an inverse algorithm to generate a matrix representation of general elements of Clifford algebra, based on a generalized Pauli element schema. 
+The method integrates tensorized decomposition with the symplectic representation of generalized Pauli elements, which is common in Clifford frameworks as binary tree method.
+
+In general case, matrix reconstruction routines 
+were *single element reconstruction* algorithm.
+Meanwhile, in here, the method is for general elements.
+For example, with quatornion system, $\mathbb{H} \approx Cl_3$.
+
+$$M = a + bi + cj + dk \rightarrow  
+\begin{bmatrix} 
+a + b i & c+ di\\
+-c + di & a- bi
+\end{bmatrix}
+$$
+
 
 
 \begin{equation}
@@ -209,25 +235,25 @@ In higher dimensions, the $n$-fold Pauli terms are represented with a tensor pro
 However, in larger systems, the usage of the common matrix representation requires too much computational costs 
 for its group and linear structures. 
 
-A simplex representation could be a solution of the problem. 
+A symplectic representation could be a solution of the problem. 
 It maps each Pauli term to geometrical language of symplectic polar spaces\cite{havlicek_moebius_2009}.
-There are several ways to map the each tern to the simplex representation, 
+There are several ways to map the each tern to the symplectic representation, 
 however, a common method is using a XZ family string representing Pauli term as product of two Pauli terms whose elements are only I, X or I, Z.
 The representation is expressed as a positive integer tuple by decompose the product string as matrix product of X, Z family strings.
 It is possible to implement the well-define binary operation for Pauli-group algebra.
 Since, the algebra implementation on matrix space have huge operational complexity comparing to 
-single integer or binary operation, the simplex representation and their algebra implementation 
+single integer or binary operation, the symplectic representation and their algebra implementation 
 provide us a lot of convenience for generating and manipulating of the terms efficiently in computation frameworks.
 For example, Reggio et al showed that we can accelerate a determination of their commutation relationship 
-with their simplex representation\cite{reggio_fast_2023}.
+with their symplectic representation\cite{reggio_fast_2023}.
 
 However, the manipulation and properties of Pauli terms does not only live in group structure. 
 Hamiltonian analysis is also based on their vector property on complex field. 
-Meanwhile, the simplex representation itself does not provide a linear structure
+Meanwhile, the symplectic representation itself does not provide a linear structure
 of the Pauli basis in matrix space.
 One solution is constructing a single matrix which is a summation of all Pauli terms in their matrix form.% 연결을 더해라
 Therefore, it is also an intense of study that the fast construction of a $n$-fold Pauli matrix from single pauli string, 
-or simplex representations or decomposition of the given matrix into Pauli polynomials.
+or symplectic representations or decomposition of the given matrix into Pauli polynomials.
 There have been some studies about fast decomposition\cite{hantzko_tensorized_2023, koska_tree-approach_2024, ying_preparing_2023} %\cite{} decomposition papers
 and composition\cite{vidal_romero_paulicomposer_2023} routines,%\cite{} composition papers 
 when a system is given with a hermite matrix, a set of coefficient, or a single Pauli string.
@@ -241,7 +267,7 @@ but also, preserves coefficient and Pauli terms in Pauli polynomial, as value an
 
 Therefore, in this paper, we proposed a proper coefficient matrix 
 to be used in Pauli polynomial representation.
-The matrix construction from simplex representations, 
+The matrix construction from symplectic representations, 
 and conversion methods to computational basis were investigated. 
 The noticiable work in the previous studies is a tensorized pauli decomposition(TPD) algorithm studied by Hantzko et al\cite{hantzko_tensorized_2023}.
 The coefficient matrix refer in the paper is came out as a result of TPD algorithm.
@@ -249,7 +275,7 @@ The coefficient matrix refer in the paper is came out as a result of TPD algorit
 In the following sections, we showed that the TPD is just a basis transformation 
 represented with sequential local operations of the tensor producted spaces. 
 By their property, unitary, it is automatically achieved the existence of inverse transformation.
-Lastly, a simple conversion operation was suggested that mapping between a simplex representation and index of the coefficient matrix
+Lastly, a simple conversion operation was suggested that mapping between a symplectic representation and index of the coefficient matrix
 of Pauli terms.
 With these knowledges, the coefficient matrix could be used for representing group and linear structure 
 of Pauli matrices in general $n$-fold Pauli terms, fascillating fast conversion between matrix and its pauli decomposition.
@@ -262,7 +288,7 @@ and the time complexity of the algorithm does not depend on the number of terms 
 
 %\subsection{Pauli matrices and terms}
 
-\subsection{Simplex representation}
+\subsection{symplectic representation}
 
 If we use $\sigma'_2$ as one of pauli basis, where $\sigma_2 = i \sigma'_2$,
 and seperate phase to the outside,
@@ -295,7 +321,7 @@ replace $I \rightarrow 0, X, Z \rightarrow =1$ in the each memebers.
 
 where $n_x, n_z$ are integers whose binary representation indicates $I=0, X=1, Z=1$.
 
-For example, $(6, 5)$ of 3-qubit system is a simplex representation of $\text{YXI}$.
+For example, $(6, 5)$ of 3-qubit system is a symplectic representation of $\text{YXI}$.
 
 \begin{equation}
     \begin{array}{c}
@@ -305,10 +331,10 @@ For example, $(6, 5)$ of 3-qubit system is a simplex representation of $\text{YX
 \end{equation}
 
 
-IBM implemented the above simplex representation 
+IBM implemented the above symplectic representation 
 for their \textit{Pauli} class in python library, \text{Qiskit},
 to use the above binary implementation\cite{Qiskit}. 
-However, in the paper, the order of the simplex representation 
+However, in the paper, the order of the symplectic representation 
 is reversed order of the IBM implementation. 
 There is no difference in algebra implementation and 
 commutation conversion routine, however, the conversion to index of coefficient
@@ -457,15 +483,15 @@ could be represented with the next notation.
 For the $n$-fold matrix, the researcher can choose the basis trnasformation, freely.
 The transformation even permits the different basis in each producted and each sub-matrix
 operations. The result coefficient matrices have identical coefficients without considering indexing.
-By choosing appropriate basis, the decompositon yields the Latin matrix whose element indexes are XZ simplex representation
+By choosing appropriate basis, the decompositon yields the Latin matrix whose element indexes are XZ symplectic representation
 of Pauli terms in Reggio et al\cite{reggio_fast_2023}.
 In below sections, we refer the index of coefficients as \textit{ij-index} in the result matrix 
 by basis transformation refered from Hantzko et al.
 
-\section{Simplex to Coefficient map}
+\section{symplectic to Coefficient map}
 
 The mapping could be vary in general cases, however for convenience, we only consider
-the general XZ simplex representation by Reggio et al\cite{reggio_fast_2023} and 
+the general XZ symplectic representation by Reggio et al\cite{reggio_fast_2023} and 
 ij-index generated from \cite{hantzko_tensorized_2023}.
 It is possible to use XZ representation as an index of Pauli terms, 
 however, there is an efficient issues.
@@ -476,7 +502,7 @@ By the object of the Pauli manipulation, the proper index could be different.
 With these two representation of the same Pauli term, the next relationship is achieved.
 
 \begin{theorem}
-    For a given simplex representation, $(n_x, n_z)$ of the given Paili term, $P$,
+    For a given symplectic representation, $(n_x, n_z)$ of the given Paili term, $P$,
     their index, $(i, j)$, in coefficient matrix is determined as 
     $$(i, j) = (n_z, n_x^\wedge n_z)$$
 
@@ -864,7 +890,7 @@ Therefore, the comparsion with naive tensor product method and PauliComposer met
 is enough to see Pennylane and Qiskit frameworks. 
 About the comparsion, the each routines are prepared as their intended 
 data. For example, Pennylane prepares the single Pauli term as Pauli object class
-, and Qiskit requires them to be in the simplex representation.
+, and Qiskit requires them to be in the symplectic representation.
 
 The estimation was conducted for $n$-qubit system random matrices from $n=1$ to $n=9$
 with 20\%, 40\%, 60\%, 80\%, 100\% terms of $4^n$ polynomial.
@@ -933,8 +959,8 @@ it overwhelms the term-by-term methods.
 \section{Conclusion}
 We showed that the tensorized decomposition algorithm was a 
 sequential basis transformation of the given matrix.
-The common XZ simplex representation is one type of the transformation.
-A simple conversion between the simplex representation and an index of the coefficient matrix 
+The common XZ symplectic representation is one type of the transformation.
+A simple conversion between the symplectic representation and an index of the coefficient matrix 
 where the output result the original decomposition, TPD algorithm\cite{hantzko_tensorized_2023}, 
 was invetigated and the inverse composition algorithms were desgined. 
 First algorithm is a naive tensor composition algorithm by inversing the TPD and using coefficient matrix.
