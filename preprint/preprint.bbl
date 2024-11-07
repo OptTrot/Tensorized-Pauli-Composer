@@ -1,0 +1,45 @@
+\begin{thebibliography}{1}
+
+\bibitem{Hantzko_2024}
+Lukas Hantzko, Lennart Binkowski, and Sabhyata Gupta.
+\newblock Tensorized pauli decomposition algorithm.
+\newblock {\em Physica Scripta}, 99(8):085128, jul 2024.
+
+\bibitem{reggio_fast_2023}
+Ben Reggio, Nouman Butt, Andrew Lytle, and Patrick Draper.
+\newblock Fast {Partitioning} of {Pauli} {Strings} into {Commuting} {Families} for {Optimal} {Expectation} {Value} {Measurements} of {Dense} {Operators}, June 2023.
+\newblock arXiv:2305.11847 [hep-lat, physics:hep-ph, physics:quant-ph].
+
+\bibitem{Qiskit}
+{Qiskit contributors}.
+\newblock Qiskit: An open-source framework for quantum computing, 2023.
+
+\bibitem{vidal_romero_paulicomposer_2023}
+Sebastián Vidal~Romero and Juan Santos-Suárez.
+\newblock {PauliComposer}: compute tensor products of {Pauli} matrices efficiently.
+\newblock {\em Quantum Information Processing}, 22(12):449, December 2023.
+
+\bibitem{bergholm2018pennylane}
+Ville Bergholm, Josh Izaac, Maria Schuld, Christian Gogolin, Shahnawaz Ahmed, Vishnu Ajith, M~Sohaib Alam, Guillermo Alonso-Linaje, B~AkashNarayanan, Ali Asadi, et~al.
+\newblock Pennylane: Automatic differentiation of hybrid quantum-classical computations.
+\newblock {\em arXiv preprint arXiv:1811.04968}, 2018.
+
+\bibitem{cirq_developers_2023_10247207}
+Cirq Developers.
+\newblock Cirq, December 2023.
+
+\bibitem{harris2020array}
+Charles~R. Harris, K.~Jarrod Millman, St{\'{e}}fan~J. van~der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, Julian Taylor, Sebastian Berg, Nathaniel~J. Smith, Robert Kern, Matti Picus, Stephan Hoyer, Marten~H. van Kerkwijk, Matthew Brett, Allan Haldane, Jaime~Fern{\'{a}}ndez del R{\'{i}}o, Mark Wiebe, Pearu Peterson, Pierre G{\'{e}}rard-Marchant, Kevin Sheppard, Tyler Reddy, Warren Weckesser, Hameer Abbasi, Christoph Gohlke, and Travis~E. Oliphant.
+\newblock Array programming with {NumPy}.
+\newblock {\em Nature}, 585(7825):357--362, September 2020.
+
+\bibitem{2020SciPy-NMeth}
+Pauli Virtanen, Ralf Gommers, Travis~E. Oliphant, Matt Haberland, Tyler Reddy, David Cournapeau, Evgeni Burovski, Pearu Peterson, Warren Weckesser, Jonathan Bright, St{\'e}fan~J. {van der Walt}, Matthew Brett, Joshua Wilson, K.~Jarrod Millman, Nikolay Mayorov, Andrew R.~J. Nelson, Eric Jones, Robert Kern, Eric Larson, C~J Carey, {\.I}lhan Polat, Yu~Feng, Eric~W. Moore, Jake {VanderPlas}, Denis Laxalde, Josef Perktold, Robert Cimrman, Ian Henriksen, E.~A. Quintero, Charles~R. Harris, Anne~M. Archibald, Ant{\^o}nio~H. Ribeiro, Fabian Pedregosa, Paul {van Mulbregt}, and {SciPy 1.0 Contributors}.
+\newblock {{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in Python}.
+\newblock {\em Nature Methods}, 17:261--272, 2020.
+
+\bibitem{kim_2024_11048922}
+Hyunseong Kim.
+\newblock {A coefficient matrix representation and the inverse composition of Pauli polynomial.}, April 2024.
+
+\end{thebibliography}
