@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.15)  7 NOV 2024 14:16
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.15)  7 NOV 2024 19:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -827,7 +827,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \vbox (badness 1515) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: images/tpd_diagram.pdf Graphic file (type pdf)
 <use images/tpd_diagram.pdf>
@@ -835,7 +835,10 @@ File: images/tpd_diagram.pdf Graphic file (type pdf)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[1
+
+Underfull \vbox (badness 4279) has occurred while \output is active []
+
+ [1
 
 
 
@@ -845,9 +848,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 328--329
  []
 
 [2]
-
-LaTeX Warning: Reference `alg:tpd_xz' on page 3 undefined on input line 393.
-
 File: images/index_change_tpd.pdf Graphic file (type pdf)
 <use images/index_change_tpd.pdf>
 
@@ -859,40 +859,37 @@ Underfull \hbox (badness 3029) in paragraph at lines 413--415
 Underfull \vbox (badness 3713) has occurred while \output is active []
 
  [3]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 500.
-
-Underfull \vbox (badness 2221) has occurred while \output is active []
-
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 503.
  [4] [5]
-Overfull \hbox (6.1267pt too wide) in paragraph at lines 785--785
+Overfull \hbox (6.1267pt too wide) in paragraph at lines 788--788
 []|$\OML/cmm/m/it/10 O\OT1/cmr/m/n/10 (4[])$|  
  []
 
 
-Overfull \hbox (22.12904pt too wide) in paragraph at lines 787--787
+Overfull \hbox (22.12904pt too wide) in paragraph at lines 790--790
 []|$\OML/cmm/m/it/10 O\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 4[])$|  
  []
 
 
-Overfull \hbox (6.1267pt too wide) in paragraph at lines 787--787
+Overfull \hbox (6.1267pt too wide) in paragraph at lines 790--790
 []|$\OML/cmm/m/it/10 O\OT1/cmr/m/n/10 (4[])$|  
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 803.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 806.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \hbox (badness 1019) in paragraph at lines 824--829
+Underfull \hbox (badness 1019) in paragraph at lines 827--832
 []\T1/ptm/m/n/10 Therefore, the com-par-sion with naive ten-sor prod-uct
  []
 
 
-Underfull \hbox (badness 3557) in paragraph at lines 846--847
+Underfull \hbox (badness 3557) in paragraph at lines 849--850
 []\T1/ptm/m/n/10 Windows 10 Home, 64bit,
  []
 
 
-Overfull \hbox (10.58331pt too wide) in paragraph at lines 852--852
+Overfull \hbox (10.58331pt too wide) in paragraph at lines 855--855
 []\T1/ptm/m/n/10 PauliComposer[[]]| 
  []
 
@@ -909,10 +906,13 @@ File: images/0.8_terms.pdf Graphic file (type pdf)
 <use images/0.8_terms.pdf>
 File: images/1_terms.pdf Graphic file (type pdf)
 <use images/1_terms.pdf>
-[6] (./preprint.bbl
+
+Underfull \vbox (badness 2050) has occurred while \output is active []
+
+ [6]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
+ (./preprint.bbl
 Underfull \hbox (badness 1946) in paragraph at lines 9--12
 []\T1/ptm/m/n/10 Ben Reg-gio, Nouman Butt, An-drew Ly-tle, and
  []
@@ -923,46 +923,42 @@ Underfull \hbox (badness 3590) in paragraph at lines 9--12
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 18--21
+Underfull \hbox (badness 1337) in paragraph at lines 22--25
 []\T1/ptm/m/n/10 Sebastián Vi-dal Romero and Juan Santos-Suárez.
  []
 
 
-Underfull \hbox (badness 1342) in paragraph at lines 32--35
+Underfull \hbox (badness 1342) in paragraph at lines 36--39
 []\T1/ptm/m/n/10 Charles R. Har-ris, K. Jar-rod Mill-man, Sté-fan J.
  []
 
 
-Underfull \hbox (badness 3108) in paragraph at lines 32--35
+Underfull \hbox (badness 3108) in paragraph at lines 36--39
 \T1/ptm/m/n/10 Wiebe, Pearu Pe-ter-son, Pierre Gérard-Marchant,
  []
 
-
-Underfull \hbox (badness 1019) in paragraph at lines 37--40
+[7]
+Underfull \hbox (badness 1019) in paragraph at lines 41--44
 \T1/ptm/m/n/10 da-men-tal Al-go-rithms for Sci-en-tific Com-put-ing in
  []
 
-[7]) [8
+) [8
 
 ] [9] (./preprint.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `preprint.out' has not changed.
-(rerunfilecheck)             Checksum: FA02C3516DA5F1CFD59DEF6EE055B968;2663.
+(rerunfilecheck)             Checksum: E7F32E8FFAB60FA1668F9D1C1AC70D2C;2804.
  ) 
 Here is how much of TeX's memory you used:
- 24854 strings out of 474773
- 461924 string characters out of 5757724
+ 24855 strings out of 474773
+ 461920 string characters out of 5757724
  1945839 words of memory out of 5000000
- 46590 multiletter control sequences out of 15000+600000
- 592021 words of font info for 78 fonts, out of 8000000 for 9000
+ 46591 multiletter control sequences out of 15000+600000
+ 593733 words of font info for 79 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 83i,14n,93p,1069b,492s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 83i,14n,93p,1069b,483s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on preprint.xdv (9 pages, 70376 bytes).
+Output written on preprint.xdv (9 pages, 71532 bytes).

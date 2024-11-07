@@ -5,11 +5,11 @@ The style file: unsrt.bst
 Database file #1: references.bib
 Warning--entry type for "cirq_developers_2023_10247207" isn't style-file defined
 --line 151 of file references.bib
-Warning--entry type for "kim_2024_11048922" isn't style-file defined
+Warning--entry type for "kim_2024" isn't style-file defined
 --line 209 of file references.bib
 You've used 9 entries,
             1791 wiz_defined-function locations,
-            500 strings with 6274 characters,
+            501 strings with 6212 characters,
 and the built_in function-call counts, 2458 in all, are:
 = -- 130
 > -- 267

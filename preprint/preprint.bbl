@@ -14,6 +14,10 @@ Ben Reggio, Nouman Butt, Andrew Lytle, and Patrick Draper.
 {Qiskit contributors}.
 \newblock Qiskit: An open-source framework for quantum computing, 2023.
 
+\bibitem{kim_2024}
+Hyunseong Kim.
+\newblock {Tensorized Pauli composer}, October 2024.
+
 \bibitem{vidal_romero_paulicomposer_2023}
 Sebastián Vidal~Romero and Juan Santos-Suárez.
 \newblock {PauliComposer}: compute tensor products of {Pauli} matrices efficiently.
@@ -37,9 +41,5 @@ Charles~R. Harris, K.~Jarrod Millman, St{\'{e}}fan~J. van~der Walt, Ralf Gommers
 Pauli Virtanen, Ralf Gommers, Travis~E. Oliphant, Matt Haberland, Tyler Reddy, David Cournapeau, Evgeni Burovski, Pearu Peterson, Warren Weckesser, Jonathan Bright, St{\'e}fan~J. {van der Walt}, Matthew Brett, Joshua Wilson, K.~Jarrod Millman, Nikolay Mayorov, Andrew R.~J. Nelson, Eric Jones, Robert Kern, Eric Larson, C~J Carey, {\.I}lhan Polat, Yu~Feng, Eric~W. Moore, Jake {VanderPlas}, Denis Laxalde, Josef Perktold, Robert Cimrman, Ian Henriksen, E.~A. Quintero, Charles~R. Harris, Anne~M. Archibald, Ant{\^o}nio~H. Ribeiro, Fabian Pedregosa, Paul {van Mulbregt}, and {SciPy 1.0 Contributors}.
 \newblock {{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in Python}.
 \newblock {\em Nature Methods}, 17:261--272, 2020.
-
-\bibitem{kim_2024_11048922}
-Hyunseong Kim.
-\newblock {A coefficient matrix representation and the inverse composition of Pauli polynomial.}, April 2024.
 
 \end{thebibliography}

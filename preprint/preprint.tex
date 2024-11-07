@@ -57,7 +57,7 @@
 
 
 %% Title
-\title{Tensorized Matrix construction algorithm from weighted Pauli polynomial
+\title{Tensorized Pauli Composer
 %%%% Cite as
 %%%% Update your official citation here when published 
 %\thanks{\textit{\underline{Citation}}: 
@@ -99,8 +99,8 @@
 \begin{abstract}
 
 %--------------------------------------------------------
-In the paper, a new method to construct a Hamiltonian matrix 
-which is given by weighted summation of Pauli operators.
+In the paper, a new method was designed to construct a Hamiltonian matrix 
+which is given by a form of weighted summation of Pauli operators.
 The method is a combination of inversed TPD\cite{Hantzko_2024}
 algorithm and symplectic tuple representation of generalized Pauli elements.
 A proper canonical matrix to combined with inversed TPD algorithm is achieved 
@@ -390,7 +390,7 @@ Eq (\ref{eq:canonical_sym}) seems a one candidate of canonical matrix
 for \texttt{iTPD}. It is not but still it is a good starting point to combine with \texttt{TPD} algorithm, 
 TPD algorithm could be modified to generate a canonical matrix
 whose index is a symplectic tuple of Pauli elements whose element value is a weight of the term.
-See Algorithm \ref{alg:tpd_xz}
+See modified version code in \cite{kim_2024}\footnote{In \textit{tp} directory.}.
 
 Unfortunately, the modified-\texttt{TPD} has less practical than 
 original \texttt{TPD}.
@@ -476,10 +476,12 @@ Therefore, the term chasing routine could be eliminated from the original TPD al
 
 \section{iTPD algorithm}
 
-In the previous section, we already showed that TPD algorithm is a sequential 
+\subsection{Naive version}
+
+The previous section showed that TPD algorithm is a sequential 
 applying of unitary transformation for each vectors in a product representation.
 By the property of unitary, the inverse transformation is well-defined 
-in $4^n$ dimension, and we can implement it in $2^n$ with 
+in $4^n$ dimension, and \texttt{iTPD} is defined with a $2^n \times 2^n$ space representation with 
 sub-block matrix additions. 
 The $\{c_i\}_{i=0}^3$ coefficients in Eq (\ref{eq:tpd_transform}) is restored as 
 
@@ -493,8 +495,9 @@ The $\{c_i\}_{i=0}^3$ coefficients in Eq (\ref{eq:tpd_transform}) is restored as
     \end{array}
 \end{equation}.
 
-The composition is achieved by iteratively applying the Eq (\ref{eq:restore}) in reverse order of TPD algorithm. 
-See, Fig (\ref{fig:tpd_diagram}).
+The total process is achieved by iteratively applying the Eq (\ref{eq:restore}) in reverse order of \texttt{TPD} algorithm. 
+The inverse process is written in Algorithm \ref{alg:naive_inverse}.
+With Algorithm \ref{alg:ppoly_to_canonical}, it yields \textit{Tensorized Pauli composer algorithm}.
 
 \begin{algorithm}
     \caption{Canonical matrix construction}\label{alg:ppoly_to_canonical}
@@ -697,7 +700,7 @@ See \ref{alg:effective_terms} for further details.
 
 
 
-\section{Comparsion to other method}
+\section{Benchmarks with other methods}
 
 \subsection{Complexity analysis}
 
@@ -758,7 +761,7 @@ the total time complexity consists of
 The maximum complexity is not different in the naive version but it is still
 lower than any term-by-term algorithm. About the effective term algorithm,
 at some range of $k_{eff}$ value it is the most efficient but 
-at very small or worts case, the naive version is more efficient. 
+at very small or worst case, the naive version is more efficient. 
 The worst complexity of the effective algorithm arises 
 when $k=\frac{1}{2}4^n$ so that,
 
@@ -773,7 +776,7 @@ the effective term algorithm is
     k < \frac{1}{2n} \left(\sqrt{289(2^{n+1})^2 + n 8^n} - 17 (2^{n+1} -1) \right) 
 \end{equation}
 
-The efficient is archieved when the non zero terms are under 0.5\% of $4^n$ number of terms.
+The efficient is achieved when the non-zero terms are under 0.5\% of $4^n$ number of terms.
 
 \begin{table*}
     \centering
@@ -810,10 +813,10 @@ Pennylane and Cirq's matrix conversion are just a simple kronecker product of ea
 In the recent version of Pennylane, they provide \textit{PauliSetence} class and matrix routine.
 However, the current implementation is not stable for test the general matrix composition.%Pennylane routine review
 
-Meanwhile, Qiskit routine is based on X, Z simplices representation of Pauli term 
+Meanwhile, Qiskit routine is based on X, Z simplectic representation of Pauli term 
 and they implemented the composition routine with PauliComposer method 
 which uses row wise mapping.
-They provides \textit{PauliList} class aslike in Pennylane. 
+They provides \textit{PauliList} class as like in Pennylane. 
 The \textit{to\_matrix} routine generates rank-3 matrices for the given Pauli terms.
 However, the class does not support coefficient supports. 
 The composition needs alternative summation with coefficient multiplication.
@@ -823,15 +826,15 @@ with using efficient term chasing routine or not, or pure python-numpy routine a
 
 Therefore, the comparsion with naive tensor product method and PauliComposer method
 is enough to see Pennylane and Qiskit frameworks. 
-About the comparsion, the each routines are prepared as their intended 
+About the comparsion, each routine are prepared as their intended 
 data. For example, Pennylane prepares the single Pauli term as Pauli object class
 , and Qiskit requires them to be in the symplectic representation.
 
 The estimation was conducted for $n$-qubit system random matrices from $n=1$ to $n=9$
-with 20\%, 40\%, 60\%, 80\%, 100\% terms of $4^n$ polynomial.
+with 20\%, 40\%, 60\%, 80\%, 100\% terms of $4^n$ degree polynomial.
 In the previous section we already showed that the effective term algorithm is 
-efficient when only 0.5\% terms are non zero in the space, however,
-for the practical application, we started from 20\% non zero terms. 
+efficient when only 0.5\% terms are non-zero in the space, however,
+for the practical application, we started from 20\% non-zero terms. 
 The system specification and libraries are denoted on Table \ref{table:specs}
 
 
@@ -892,21 +895,23 @@ it overwhelms the term-by-term methods.
 \end{figure*}
 
 \section{Conclusion}
-We showed that the tensorized decomposition algorithm was a 
-sequential basis transformation of the given matrix.
+
+In the paper, tensorized pauli composition(\texttt{TPC}) algorithm was designed 
+using a proper canonical matrix and inverse Tensorizerd Pauli decomposition(\texttt{TPD}) algorithm\cite{Hantzko_2024}.
+\texttt{TPD} was a sequential basis transformation of the given matrix.
 The common XZ symplectic representation is one type of the transformation.
-A simple conversion between the symplectic representation and an index of the canonical matrix 
-where the output result the original decomposition, TPD algorithm\cite{Hantzko_2024}, 
-was investigated and the inverse composition algorithms were designed. 
-First algorithm is a naive tensor composition algorithm by applying inversed TPD and using canonical matrix.
-The other is an effective term algorithm by calculate non-zero coefficients during the iterative 
-steps of the naive version.
+A simple conversion between the symplectic representation and an index of the canonical matrix of \texttt{TPD}, 
+was investigated and the inverse composition algorithms were designed.
+Furthermore, a modified algorithm of \texttt{TPC} was desigend by adding an effective term chasing routine.  
+The chasing routine eliminate unnecessary terms in the naive \texttt{TPC} process,
+so for sparse Pauli summation case, the algorithm is expected to show better result than naive version.
+
 The algorithms are designed to compose the multiple terms at once, 
 so that achieves better computational complexity in Pauli polynomial composition, in time and spatial both. 
 The naive composition algorithm consists of basis transformation mapping between 
 the canonical matrix and the original matrix representation.
 
-Comparing to the previous term-by-term methods which have $O(16^n + 4^n(f(n)-1))$ complexity in the worts case, 
+Comparing to the previous term-by-term methods which have $O(16^n + 4^n(f(n)-1))$ complexity in the worst case, 
 the naive algorithm is at least, twice faster than the common term-by-term methods  with $O(8^n)$ complexity. 
 It means that we can construct the matrix with computational basis corresponding to the given 
 Pauli-polynomial at process of the algorithm. 
@@ -914,7 +919,7 @@ The inverse algorithm could chase effective terms during the composition process
 However, chasing routine requires many computational costs it is not efficient as much as the naive version,
 and even comparable with the term-by-term methods with $O(n16^n)$ complexity in the worst case.
 
-In addition, the composition speed comparsion between the current quantum computing frameworks, Qiskit, Pennylane, and naive
+In addition, the composition speed benchmark between the current quantum computing frameworks, Qiskit, Pennylane, and naive
 tensor product routines. 
 The inverse composition algorithm showed better speed for all cases, single, multi, worst terms 
 for from $n=2$ to $n=9$ qubit cases. 
@@ -929,11 +934,10 @@ was not noticible in the implementation.
 The research was funded by Quantum Sapiens Human resources center.
 
 \section*{Data and code available}
-The research was conducted for sub module of OptTrot python package for 
+The research was conducted for implementing a sub-module of OptTrot python package for 
 fast manipulation and optimization routine for Hamiltonian.
-The tested code and the packages are available on OptTrot repository.
-The same version of the code in the paper is on 
-Zenodo repository\cite{kim_2024_11048922}.
+OptTrot is a quantum computing frameworks for optimizing Trotter circuit on gate model computer.
+The benchmarked code and data are on Github repository\cite{kim_2024}.
 %Bibliography
 \bibliographystyle{unsrt}  
 \bibliography{references}  
