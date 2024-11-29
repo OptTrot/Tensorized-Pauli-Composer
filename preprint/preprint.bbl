@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Hantzko_2024}
 Lukas Hantzko, Lennart Binkowski, and Sabhyata Gupta.
@@ -14,11 +14,15 @@ Ben Reggio, Nouman Butt, Andrew Lytle, and Patrick Draper.
 {Qiskit contributors}.
 \newblock Qiskit: An open-source framework for quantum computing, 2023.
 
-\bibitem{kim_2024}
-Hyunseong Kim.
-\newblock {Tensorized Pauli composer}, October 2024.
+\bibitem{dion2024efficientlymanipulatingpaulistrings}
+Maxime Dion, Tania Belabbas, and Nolan Bastien.
+\newblock Efficiently manipulating pauli strings with pauliarray, 2024.
 
-\bibitem{vidal_romero_paulicomposer_2023}
+\bibitem{kim_opttrot}
+Hyunseong Kim.
+\newblock {OptTrot: Optimization framework of Trotter circuit.}, October 2024.
+
+\bibitem{vidal_romero_Paulicomposer_2023}
 Sebastián Vidal~Romero and Juan Santos-Suárez.
 \newblock {PauliComposer}: compute tensor products of {Pauli} matrices efficiently.
 \newblock {\em Quantum Information Processing}, 22(12):449, December 2023.
@@ -41,5 +45,9 @@ Charles~R. Harris, K.~Jarrod Millman, St{\'{e}}fan~J. van~der Walt, Ralf Gommers
 Pauli Virtanen, Ralf Gommers, Travis~E. Oliphant, Matt Haberland, Tyler Reddy, David Cournapeau, Evgeni Burovski, Pearu Peterson, Warren Weckesser, Jonathan Bright, St{\'e}fan~J. {van der Walt}, Matthew Brett, Joshua Wilson, K.~Jarrod Millman, Nikolay Mayorov, Andrew R.~J. Nelson, Eric Jones, Robert Kern, Eric Larson, C~J Carey, {\.I}lhan Polat, Yu~Feng, Eric~W. Moore, Jake {VanderPlas}, Denis Laxalde, Josef Perktold, Robert Cimrman, Ian Henriksen, E.~A. Quintero, Charles~R. Harris, Anne~M. Archibald, Ant{\^o}nio~H. Ribeiro, Fabian Pedregosa, Paul {van Mulbregt}, and {SciPy 1.0 Contributors}.
 \newblock {{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in Python}.
 \newblock {\em Nature Methods}, 17:261--272, 2020.
+
+\bibitem{kim_2024_TPC}
+Hyunseong Kim.
+\newblock {Tensorized Pauli composer}, October 2024.
 
 \end{thebibliography}

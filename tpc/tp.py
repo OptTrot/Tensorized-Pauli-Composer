@@ -3,7 +3,7 @@ import numpy as np
 from scipy.sparse import coo_matrix
 from .utils import pstr2ij_code, ij_code2_pstr
 
-def ppoly2canonical(ppoly:list[Tuple[str, float]], sparse=False)->np.matrix:
+def ppoly2pauli_basis(ppoly:list[Tuple[str, float]], sparse=False)->np.matrix:
     pstr, _ = ppoly[0]
     N = int(2**len(pstr))
     mat = np.matrix(np.zeros((N, N)).astype(complex))
@@ -13,7 +13,7 @@ def ppoly2canonical(ppoly:list[Tuple[str, float]], sparse=False)->np.matrix:
     return mat if not sparse else coo_matrix(mat)
 
 
-def canonical2ppoly(cmat:np.matrix):
+def pauli_basis2ppoly(cmat:np.matrix):
     n = int(np.log2(cmat.shape[0]))
     s_mat = coo_matrix(cmat)
     ppoly = []
@@ -26,7 +26,7 @@ def canonical2ppoly(cmat:np.matrix):
 def tpd(H:np.matrix)->np.matrix:
     """Tensorized matrix construction method from weighted Pauli sum.
     Args:
-        H (np.matrix): Canonical matrix of Pauli elements
+        H (np.matrix): Pauli_basis matrix of Pauli elements
 
     Returns:
         np.matrix: Restored Hamiltonian
@@ -64,7 +64,7 @@ def tpd(H:np.matrix)->np.matrix:
 
 def tpd_xz(H:np.matrix)->np.matrix:
     """Modified Tensorized decomposition of hermit matrix into pauli terms.
-    It generates a canonical matrix whose row and column index is a symplectic tuple of Pauli terms.
+    It generates a pauli_basis matrix whose row and column index is a symplectic tuple of Pauli terms.
 
     Args:
         H (np.matrix): Hermit matrix.
@@ -110,12 +110,12 @@ def tpd_xz(H:np.matrix)->np.matrix:
     return H
 
 def itpd(ppoly:list[Tuple[str, float]])->np.matrix:
-    return itpd_core(ppoly2canonical(ppoly))
+    return itpd_core(ppoly2pauli_basis(ppoly))
 
 def itpd_core(mat :np.matrix)->np.matrix:
     """Tensorized matrix construction method from weighted Pauli sum.
     Args:
-        mat (np.matrix): Canonical matrix of Pauli elements
+        mat (np.matrix): pauli_basis matrix of Pauli elements
 
     Returns:
         np.matrix: Restored Hamiltonian
@@ -154,8 +154,8 @@ def itpd_core(mat :np.matrix)->np.matrix:
     return mat
 
 def itpd_eff(ppoly):
-    canonical = ppoly2canonical(ppoly, sparse=True)
-    return itpd_eff_core(canonical.toarray(), np.stack([canonical.row, canonical.col]).T)
+    pauli_basis = ppoly2pauli_basis(ppoly, sparse=True)
+    return itpd_eff_core(pauli_basis.toarray(), np.stack([pauli_basis.row, pauli_basis.col]).T)
 
 
 def itpd_eff_core(
@@ -165,7 +165,7 @@ def itpd_eff_core(
     """Conversion routine from a coefficient matrix to original matrix, in computational basis 
 
     Args:
-        mat (np.Matrix): A canonical matrix of the given Pauli polynomial.
+        mat (np.Matrix): A pauli_basis matrix of the given Pauli polynomial.
         p_indexes (Tuple[Tuple[int, int], ...]): Non zero term indexes.
 
     Returns:

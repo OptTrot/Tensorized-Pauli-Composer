@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.15)  7 NOV 2024 19:38
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.15)  29 NOV 2024 23:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -804,13 +804,13 @@ Package caption Info: End \AtBeginDocument code.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 117.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 124.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 117.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 124.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -818,7 +818,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 File: orcid.pdf Graphic file (type pdf)
 <use orcid.pdf>
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 117.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 124.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -826,70 +826,59 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-File: images/tpd_diagram.pdf Graphic file (type pdf)
-<use images/tpd_diagram.pdf>
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \vbox (badness 4279) has occurred while \output is active []
-
  [1
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 328--329
+File: images/tpd_diagram.pdf Graphic file (type pdf)
+<use images/tpd_diagram.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--334
 []\T1/ptm/m/n/10 where $[]\OML/cmm/m/it/10 ; []$ \T1/ptm/m/n/10 are bi-nary vec-tor rep-re-sen-ta-tion of
  []
 
 [2]
+
+Package natbib Warning: Citation `kim_2024' on page 3 undefined on input line 398.
+
 File: images/index_change_tpd.pdf Graphic file (type pdf)
 <use images/index_change_tpd.pdf>
 
-Underfull \hbox (badness 3029) in paragraph at lines 413--415
+Underfull \hbox (badness 3029) in paragraph at lines 418--420
 [][]\T1/ptm/b/n/10 Theorem 1. []\T1/ptm/m/it/10 For a given sym-plec-tic rep-re-sen-ta-tion,
  []
 
 
-Underfull \vbox (badness 3713) has occurred while \output is active []
+Underfull \vbox (badness 3482) has occurred while \output is active []
 
  [3]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 503.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 512.
  [4] [5]
-Overfull \hbox (6.1267pt too wide) in paragraph at lines 788--788
+Overfull \hbox (6.1267pt too wide) in paragraph at lines 817--817
 []|$\OML/cmm/m/it/10 O\OT1/cmr/m/n/10 (4[])$|  
  []
 
 
-Overfull \hbox (22.12904pt too wide) in paragraph at lines 790--790
+Overfull \hbox (22.12904pt too wide) in paragraph at lines 820--820
 []|$\OML/cmm/m/it/10 O\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 4[])$|  
  []
 
 
-Overfull \hbox (6.1267pt too wide) in paragraph at lines 790--790
+Overfull \hbox (6.1267pt too wide) in paragraph at lines 820--820
 []|$\OML/cmm/m/it/10 O\OT1/cmr/m/n/10 (4[])$|  
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 806.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 836.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \hbox (badness 1019) in paragraph at lines 827--832
-[]\T1/ptm/m/n/10 Therefore, the com-par-sion with naive ten-sor prod-uct
- []
-
-
-Underfull \hbox (badness 3557) in paragraph at lines 849--850
+Underfull \hbox (badness 3557) in paragraph at lines 880--881
 []\T1/ptm/m/n/10 Windows 10 Home, 64bit,
  []
 
 
-Overfull \hbox (10.58331pt too wide) in paragraph at lines 855--855
+Overfull \hbox (10.58331pt too wide) in paragraph at lines 886--886
 []\T1/ptm/m/n/10 PauliComposer[[]]| 
  []
 
@@ -906,59 +895,60 @@ File: images/0.8_terms.pdf Graphic file (type pdf)
 <use images/0.8_terms.pdf>
 File: images/1_terms.pdf Graphic file (type pdf)
 <use images/1_terms.pdf>
-
-Underfull \vbox (badness 2050) has occurred while \output is active []
-
- [6]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- (./preprint.bbl
-Underfull \hbox (badness 1946) in paragraph at lines 9--12
+[6] (./preprint.bbl
+Underfull \hbox (badness 1057) in paragraph at lines 9--12
 []\T1/ptm/m/n/10 Ben Reg-gio, Nouman Butt, An-drew Ly-tle, and
  []
 
 
-Underfull \hbox (badness 3590) in paragraph at lines 9--12
+Underfull \hbox (badness 1824) in paragraph at lines 9--12
 \T1/ptm/m/n/10 into Com-mut-ing Fam-i-lies for Op-ti-mal Ex-pec-ta-
  []
 
-
-Underfull \hbox (badness 1337) in paragraph at lines 22--25
-[]\T1/ptm/m/n/10 Sebastián Vi-dal Romero and Juan Santos-Suárez.
- []
-
-
-Underfull \hbox (badness 1342) in paragraph at lines 36--39
-[]\T1/ptm/m/n/10 Charles R. Har-ris, K. Jar-rod Mill-man, Sté-fan J.
- []
-
-
-Underfull \hbox (badness 3108) in paragraph at lines 36--39
-\T1/ptm/m/n/10 Wiebe, Pearu Pe-ter-son, Pierre Gérard-Marchant,
- []
-
 [7]
-Underfull \hbox (badness 1019) in paragraph at lines 41--44
-\T1/ptm/m/n/10 da-men-tal Al-go-rithms for Sci-en-tific Com-put-ing in
+Underfull \hbox (badness 1127) in paragraph at lines 31--34
+\T1/ptm/m/n/10 haib Alam, Guillermo Alonso-Linaje, B Akash-
  []
 
-) [8
 
-] [9] (./preprint.aux)
+Underfull \hbox (badness 1515) in paragraph at lines 40--43
+\T1/ptm/m/n/10 Cour-na-peau, Eric Wieser, Ju-lian Tay-lor, Se-bas-
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 40--43
+\T1/ptm/m/n/10 Travis E. Oliphant.  Ar-ray pro-gram-ming with
+ []
+
+
+Underfull \hbox (badness 4120) in paragraph at lines 45--48
+\T1/ptm/m/n/10 Matt Haber-land, Tyler Reddy, David Cour-na-
+ []
+
+
+Underfull \hbox (badness 1033) in paragraph at lines 45--48
+\T1/ptm/m/n/10 Paul van Mul-bregt, and SciPy 1.0 Con-trib-u-tors.
+ []
+
+)
+
+Package natbib Warning: There were undefined citations.
+
+[8] [9] (./preprint.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `preprint.out' has not changed.
-(rerunfilecheck)             Checksum: E7F32E8FFAB60FA1668F9D1C1AC70D2C;2804.
+(rerunfilecheck)             Checksum: B99CEE6EAD6328E4AD48BB763B8C7086;2881.
  ) 
 Here is how much of TeX's memory you used:
- 24855 strings out of 474773
- 461920 string characters out of 5757724
- 1945839 words of memory out of 5000000
- 46591 multiletter control sequences out of 15000+600000
+ 24862 strings out of 474773
+ 462155 string characters out of 5757724
+ 1946839 words of memory out of 5000000
+ 46598 multiletter control sequences out of 15000+600000
  593733 words of font info for 79 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  83i,14n,93p,1069b,483s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on preprint.xdv (9 pages, 71532 bytes).
+Output written on preprint.xdv (9 pages, 75352 bytes).

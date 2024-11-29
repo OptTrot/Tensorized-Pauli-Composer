@@ -99,15 +99,22 @@
 \begin{abstract}
 
 %--------------------------------------------------------
-In the paper, a new method was designed to construct a Hamiltonian matrix 
+In the paper, a new method was designed to construct a hamiltonian matrix 
 which is given by a form of weighted summation of Pauli operators.
-The method is a combination of inversed TPD\cite{Hantzko_2024}
-algorithm and symplectic tuple representation of generalized Pauli elements.
-A proper canonical matrix to combined with inversed TPD algorithm is achieved 
-by a simple binary XOR operation of common symplectic representation.
-The algorithm has $O(n4^n)$ time complexity in worst case.
-The symplectic representation allow us to express finite dimension Hilbert space 
-as a matrix form, and with inversed TPD algorithm, common matrix representation is efficiently restored.
+A symplectic representation of Pauli terms allows us to express finite dimension Hilbert space 
+as a matrix form. 
+Therefore, Pauli basis representation of hamiltonian could be treated as one kind of symplectic representation. 
+A transformation between two specific symplectic representations was designed.
+One is a common XZ code and the other is an index of Pauli basis matrix of TPD algorithm\cite{Hantzko_2024}.
+With inversed TPD algorithm, the transformation of the code yields a common matrix representation from weighted Pauli summation.
+The transformation between two codes consist of simple bitwise XOR operation.
+Consequently, the benefit of original benefit of TPD is preserved in iTPD.
+In addition to the algorithm, a term-chasing version was developed for sparse matrix in Pauli basis.
+It is roughly $O(16^n)$ time complexity but, in sparse case and $<5$ qubit system, 
+it showed 10 time faster than the prior algorithm.
+The algorithm has $O(n4^n)$ time complexity in the worst case, 
+and comparing to the term-by-term construction method with $O(n16^n) $ complexity, 
+it is computationally efficient for general case.
 \end{abstract}
 
 % keywords can be removed
@@ -117,8 +124,8 @@ as a matrix form, and with inversed TPD algorithm, common matrix representation 
 ]
 \section{Introduction}
 The research proposes a method to construct 
-a specific canonical matrix representation of weighted Pauli polynomial.
-The canonical matrix is a representation of finite dimension Hilbert space 
+a specific Pauli basis matrix representation of weighted Pauli polynomial.
+The Pauli basis matrix is a representation of finite dimension Hilbert space 
 in Heisenberg representation. 
 In other word, the representation is faithful to every operator in Hilbert space.
 Moreover, the matrix is a result matrix of Tensorized Pauli Decomposition(\texttt{TPD}) algorithm 
@@ -132,18 +139,18 @@ transforming a given weighted Pauli polynomial to its single matrix representati
     \sum_i^n \lambda_i P_i \rightarrow_{\mbox{\texttt{iTPD}}} H
 \end{equation}
 
-Following section demonstrate a brief review of TPD algorithm, especially
+Following sections demonstrate a brief review of TPD algorithm, especially
 index determination of single Pauli element. 
 Consequently, a symplectic representation of Pauli element was introduced.
-Treating the representation as p-adic representation provides a connection between Pauli element, and matrix element.
+Treating the representation as \textit{p}-adic representation provides a connection between Pauli element, and matrix element.
 In the last section, the inverse TPD algorithm was compared with 
 the other algorithms in complexity and real execution time in hardware.
 
 \section{Tensorized Pauli Decomposition Algorithm}
 
-In 2024, Hantzko et al showed that 
-general $\mathbf{M}_{2^n}(\mathbb{C})$ matrices are efficiently decomposed into 
-several Pauli terms with corresponding coefficients, using a tensorized notation\cite{Hantzko_2024}.
+In 2024, Hantzko et al proposed that 
+general $\mathbf{M}_{2^n}(\mathbb{C})$ matrices could be efficiently decomposed into 
+several Pauli terms with corresponding coefficients, using a tensorized block matrix manipulation\cite{Hantzko_2024}.
 
 \begin{equation}
     \sum_{i=0}^3 c_i \sigma_i = 
@@ -171,6 +178,12 @@ where,
 
 The basic idea is decoupling the coefficients of each tensor producted space, iteratively. 
 See Figure \ref{fig:tpd_diagram}.
+The decomposition process is non-linear in $2^n \times 2^n$ matrix space. 
+However, it is a basis transformation in a higher dimension $\mathbb{C}^N$ space, 
+which is isomorphic to the vector spaces with $N = 4^n$ dimension.
+For example, the $2 \times 2$ dimension matrix of a 1-qubit system, the process could be expressed as 
+$\mathbf{v} \in \mathbb{C}^4$. 
+
 
 \begin{figure}[!h]
     \centering
@@ -178,13 +191,6 @@ See Figure \ref{fig:tpd_diagram}.
     \caption{Iterative diagram of Tensorized Pauli Decomposition algorithm.}
     \label{fig:tpd_diagram}
 \end{figure}
-
-The decomposition process is non-linear in $2^n \times 2^n$ matrix space. 
-However, it is a basis transformation in a higher dimension $\mathbb{C}^N$ space, 
-which is isomorphic to the vector spaces with $N = 4^n$ dimension.
-
-For example, the $2 \times 2$ dimension matrix of 1 qubit system, the process could be expressed as 
-$\mathbf{v} \in \mathbb{C}^4$. 
 
 \begin{equation}
     \frac{1}{2}
@@ -208,7 +214,7 @@ $\mathbf{v} \in \mathbb{C}^4$.
     \end{bmatrix}
 \end{equation}
 
-In $2 \times 2$ matrix with computational basis, the next matrix is a \textit{canonical matrix} of 1 qubit system.
+In $2 \times 2$ matrix with computational basis, the next matrix is a \textit{Pauli basis matrix} of 1 qubit system.
 
 \begin{equation}
     \begin{bmatrix}
@@ -281,10 +287,10 @@ operations.
 In original implementation, each Pauli term was chased during the process. 
 Therefore, they mapped the coefficients by adding a character to each string variables 
 in each step of the iteration. 
-The result canonical matrix has identical coefficients without considering indexing.
+The result Pauli basis matrix has identical coefficients without considering indexing.
 By choosing appropriate basis transformation, the decomposition yields the Latin matrix whose element indexes are XZ symplectic representation
 of Pauli terms in Reggio et al\cite{reggio_fast_2023}.
-In below sections, the index of the canonical matrix as \textit{ij-index}.
+In below sections, the index of the Pauli basis matrix as \textit{ij-index}.
 
 \section{Symplectic representation of Pauli element}
 
@@ -295,10 +301,9 @@ $2\times 2$ Pauli matrices.
     P = (i)^m \otimes_j^n \sigma_j
 \end{equation}
 
-From Pauli matrices, $\{\sigma_0, \sigma_1, \sigma_2, \sigma_3\}$
-If $\sigma'_2$ replaces $\sigma_2$, where $\sigma_2 = i \sigma'_2$,
-and separate phase to the outside,
-the tensor product representation of $n$-fold Pauli element has a next form.
+From Pauli matrices, $\{\sigma_0, \sigma_1, \sigma_2, \sigma_3\}$, replacing $\sigma'_2$ into $\sigma_2$, where $\sigma_2 = i \sigma'_2$,
+and separating phase to the outside yield
+a tensor product representation of $n$-fold Pauli element has a next form.
 
 \begin{equation}
     P_{g} = \{\sigma_0 , \sigma_1, \sigma'_2, \sigma_3\}
@@ -318,27 +323,14 @@ The example families are $z$-family and $x$-family referred by Reggio et al\cite
     \otimes_j^n \sigma_j = \left( \otimes_{j \in \{0, 1\}}^n \sigma_j \right) \left( \otimes_{k \in \{0, 3\}}^n \sigma_k \right)
 \end{equation}
 
-Eq(\ref{eq:xz_decompose}) yields an unique representation as integer tuple of length 2 by 
-replace $I \rightarrow 0, X, Z \rightarrow =1$ in the each memeber.
+Eq(\ref{eq:xz_decompose}) yields a unique binary vector tuple representation of length 2, replacing
+ $I \rightarrow 0, X, Z \rightarrow =1$ in each memeber.
 
 \begin{equation}
     P = (\vec{z}, \vec{x}), \, \vec{z}, \vec{x} \in \{0, 1\}^N
 \end{equation}
 
 where $\vec{z}, \vec{x}$ are binary vector representation of $\otimes_{j \in \{0, 1\}}^n \sigma_j, \otimes_{j \in \{0, 3\}}^n \sigma_j$ indicates $I=0, X=1, Z=1$.
-
-A binary vector representation is now commonly adopted in quantum computing frameworks 
-such as IBM Qiskit and Pennylane written by Xanadu, 
-because the representation has a significant benefit in execution time.
-IBM implemented the above symplectic vector representation 
-for their \textit{Pauli} class in python library, \text{Qiskit},
-to use the above binary implementation\cite{Qiskit}. 
-However, in the paper, the order of the symplectic representation 
-is reversed order of the IBM implementation. 
-There is no difference in algebra implementation and 
-commutation conversion routine, however, the conversion to index of coefficient
-matrix is more direct in the reversed order than the IBM order.
-
 
 A 2-adic representation of binary vector permit them to be treated with 
 a single integer tuple, $(n_z, n_x)$, ignoring phase factor.
@@ -381,14 +373,27 @@ each element of $2^n \times 2^n$ dimension matrix.
         0 & 0 & 0& 0 & 0 & 0 & \lambda_1& 0\\
         0 & 0 & 0& 0 & 0 & 0 & 0& 0\\
         0 & 0 & 0& 0 & 0 & 0 & 0& 0\\
-    \end{bmatrix}\label{eq:canonical_sym}
+    \end{bmatrix}\label{eq:Pauli basis_sym}
 \end{align}
+
+A binary vector representation is now commonly adopted in quantum computing frameworks 
+such as IBM Qiskit and Pennylane written by Xanadu, 
+because the representation has a significant benefit in execution time.
+IBM implemented the above symplectic vector representation 
+for their \textit{Pauli} class in python library, \text{Qiskit},
+to use the above binary implementation\cite{Qiskit}. 
+However, in the paper, the order of the symplectic representation 
+is reversed order of the IBM implementation. 
+There is no difference in algebra implementation and 
+commutation conversion routine, however, the conversion to index of coefficient
+matrix is more direct in the reversed order than the IBM order.
+
 
 \subsection{TPD for symplectic representation}
 
-Eq (\ref{eq:canonical_sym}) seems a one candidate of canonical matrix 
-for \texttt{iTPD}. It is not but still it is a good starting point to combine with \texttt{TPD} algorithm, 
-TPD algorithm could be modified to generate a canonical matrix
+Eq (\ref{eq:Pauli basis_sym}) seems a one candidate of Pauli basis matrix 
+for \texttt{iTPD}. Unfortunately, it is not, but still it is a good starting point to combine with \texttt{TPD} algorithm, 
+\texttt{TPD} could be modified to generate a Pauli basis matrix
 whose index is a symplectic tuple of Pauli elements whose element value is a weight of the term.
 See modified version code in \cite{kim_2024}\footnote{In \textit{tp} directory.}.
 
@@ -397,10 +402,10 @@ original \texttt{TPD}.
 During the calculation, in $k$-th step, additional $2^k \times 2^k$ size memory 
 is required to swap the partition of the matrix, and it yields 
 a great inefficient in spatial and time complexity.
-Therefore, another representation is required to combine a symplectic tuple representation with
-TPD algorithm without losing their benefit in computation.
+Therefore, a transformation is required preserving a computational benefit of TPD algorithm
+The transformation converts a symplectic tuple representation to Pauli basis.
 
-\subsection{Symplectic tuple to canonical matrix}
+\subsection{Symplectic tuple to Pauli basis matrix}
 
 \begin{figure}
     \includegraphics[width=\linewidth]{index_change_tpd.pdf}
@@ -411,7 +416,7 @@ TPD algorithm without losing their benefit in computation.
 \begin{theorem}
     \label{thm:index_conversion}
     For a given symplectic representation, $(n_x, n_z)$ of the given Paili term, $P$,
-    their index, $(i, j)$, in canonical matrix is determined by next formula
+    their index, $(i, j)$, in Pauli basis matrix is determined by next formula
 
     \begin{equation}
         \label{eq:ij_nznx}
@@ -437,7 +442,7 @@ TPD algorithm without losing their benefit in computation.
         \end{bmatrix}
     \end{equation}
     
-    where, $0_z, 1_z, 0_x, 1_x$ are $k$-th decimal value of $(n_z, n_x)$ of Pauli element.
+    where, $0_z, 1_z, 0_x, 1_x$ are $k$-th binary value of $(n_z, n_x)$ of Pauli element.
     Let them as $nz_k, nx_k$.
 
     For row index, $nz_k\in \{0, 1\}$ the Z-binary determine
@@ -448,7 +453,7 @@ TPD algorithm without losing their benefit in computation.
     $2^{n-k} * nz_k^{\wedge}nx_k, \, nz_k\in \{0_z, 1_z\}, nx_k \in \{0_x, 1_x\}$
 
     Thus, we have (i, j) coefficient index of XZ representation by iteration from 1-th to $n$-th. 
-
+    In 2-adic representation of integer, they are identity and bitwise XOR operator of $(nz, nx)$.
     \begin{equation}
         \begin{array}{clcc}
         i =& \sum_{k=0}^{n-1} 2^{k} nz_k &=& nz\\
@@ -459,20 +464,23 @@ TPD algorithm without losing their benefit in computation.
 \end{proof}
 
 Using Eq (\ref{eq:ij_nznx}), weighted Pauli polynomial could be transformed to 
-a canonical matrix directly applied for \texttt{iTPD}.
+a Pauli basis matrix directly applied for \texttt{iTPD}.
 
 Theorem \ref{thm:index_conversion} provides 1-1 correspondence 
-between canonical matrix element location and each Pauli element.
+between Pauli basis matrix element location and each Pauli element.
 The symplectic tuple representation is restored by next relationship.
 
 \begin{equation}
     (nz, nx) = (i, i^\wedge j)
 \end{equation}
 
+\section{Minor improvement in TPD}
+
 In original TPD, Pauli elements were chased in each iteration, 
-but with Eq (\ref{eq:ij_nznx}), the weights in canonical matrix 
+by constructing each $k$-th Pauli characters of all elements.
+However, with Eq (\ref{eq:ij_nznx}), the weights in Pauli basis matrix 
 are directly determine corresponding Pauli elements.
-Therefore, the term chasing routine could be eliminated from the original TPD algorithm.
+Therefore, the character storing routine could be eliminated from the original TPD algorithm.
 
 \section{iTPD algorithm}
 
@@ -488,33 +496,35 @@ The $\{c_i\}_{i=0}^3$ coefficients in Eq (\ref{eq:tpd_transform}) is restored as
 \begin{equation}
     \label{eq:restore}
     \begin{array}{ccc}
-        c_0 &=& \frac{1}{2} (A_{11} + A_{22})\\
-        c_1 &=& \frac{1}{2} (A_{12} + A_{21})\\
-        c_2 &=& \frac{i}{2} (A_{12} - A_{21})\\
-        c_3 &=& \frac{1}{2} (A_{11} - A_{22})\\
+        A_{11} &=& c_0 + c_3\\
+        A_{12} &=& c_1 + i c_2\\
+        A_{21} &=& c_1 - i c_2\\
+        A_{22} &=& c_0 - c_3\\
     \end{array}
 \end{equation}.
 
 The total process is achieved by iteratively applying the Eq (\ref{eq:restore}) in reverse order of \texttt{TPD} algorithm. 
 The inverse process is written in Algorithm \ref{alg:naive_inverse}.
-With Algorithm \ref{alg:ppoly_to_canonical}, it yields \textit{Tensorized Pauli composer algorithm}.
+With symplectic code conversion(\texttt{SCC}) algorithm \ref{alg:ppoly_to_Pauli basis}, 
+it yields \textit{Tensorized Pauli composer algorithm}(\texttt{TPC}).
 
 \begin{algorithm}
-    \caption{Canonical matrix construction}\label{alg:ppoly_to_canonical}
+    \caption{Symplectic code conversion}\label{alg:ppoly_to_Pauli basis}
     \begin{algorithmic}
-        \Require $N \gets$ qubit number, $P \gets$ weighted Pauli summation.
+        \Require $N \gets$ qubit number, $P \gets \sum_i \lambda_i P_i$ (weighted Pauli summation).
         \State $M \gets$ Zero matrix of dim $(N,N)$
         \For{$(\lambda_i, n_z^i, n_x^i)$ \textbf{in} $P$}
             \State $row \gets n_z^i$
             \State $col \gets {n_z^i}^\wedge n_x^i$
             \State $M[row, col] \gets \lambda_i$
         \EndFor
+        \Return{$M$}
     \end{algorithmic}
 \end{algorithm}
 
 
 \begin{algorithm}
-    \caption{Naive Inverse Composition Algorithm}\label{alg:naive_inverse}
+    \caption{Naive \texttt{iTPD}}\label{alg:naive_inverse}
     \begin{algorithmic}
         %\Require poly = $\{(c_i, (nx_i, nz_i))\}_{i=1}^k$
         %\Require n = Tensor Product dimension \Comment{Qubit number}
@@ -526,12 +536,12 @@ With Algorithm \ref{alg:ppoly_to_canonical}, it yields \textit{Tensorized Pauli 
         %    \State $nz_i \gets$ poly[i].nz
         %    \State{polyij[i] $\gets (c_i, (nz_i, nx_i^\wedge nz_i))$ } 
         %\EndFor
-        %\Comment{Construct canonical matrix}
+        %\Comment{Construct Pauli basis matrix}
         %\State $M \gets $ Zero matrix of ($2^n$, $2^n$).
         %\For{c, i, j \textbf{in} polyij}
         %    \State{M$[\text{i}][\text{j}]$ = c} 
         %\EndFor
-        \Require $M \gets$ canonical matrix of $(2^n, 2^n)$
+        \Require $M \gets$ Pauli basis matrix of $(2^n, 2^n)$
         \State matdim $\gets 2^n$
         \State steps $\gets$ n
         \State unit\_size $\gets$ 1
@@ -563,19 +573,33 @@ With Algorithm \ref{alg:ppoly_to_canonical}, it yields \textit{Tensorized Pauli 
             \EndFor
             \State unit\_size $\gets$ 2*unit\_size
         \EndFor
+        \Return{$M$}
     \end{algorithmic}
 \end{algorithm}
 
-The characteristic of the algorithm is that 
-the maximum time complexity is same between one Pauli term and general weighted sum of Pauli terms.
+\begin{algorithm}
+    \caption{TPC}\label{alg:TPC}
+    \begin{algorithmic}
+        \Require $N \gets$ qubit number, $P \gets \sum_i \lambda_i P_i$
+        \State $M \gets$ \texttt{SCC}($N, P$)%\ref{alg:ppoly_to_Pauli basis} ($N$, $P$)
+        \State $H \gets$ \texttt{iTPD}($M$)%\ref{alg:naive_inverse}
+        \Return{$H$}
+    \end{algorithmic}
+\end{algorithm}
+
+The algorithm is a combination of \texttt{iTPD} and the above symplectic construction
+method. If Pauli elements are stored in string type, the conversion requires 
+some computational resources, but if a framework store them as symplectic code,
+it is very efficient to convert the representation. 
+This approach is already adopted in some frameworks\cite{dion2024efficientlymanipulatingpaulistrings}\cite{kim_opttrot}.
 In addition, as has mentioned in \cite{Hantzko_2024}, it does not need further 
 instant matrix to save the terms, so that spatial complexity of the algorithm is also practical 
 in large system.
 
-\subsection{Efffective term chasing}
+\subsection{Effective term chasing}
 
 During the calculation, if two partial matrices were zero matrix, then 
-the calculation is meaningless. This case arises in sparse canonical matrix; 
+the calculation is meaningless. This case arises in sparse Pauli basis matrix; 
 Hamiltonian has few Pauli terms.
 In sparse case, chasing non-zero term provides some benefit in calculation time.
 
@@ -603,7 +627,7 @@ quotient of 2, such as
 where, $row_i = 2*m_i + r_i$ and $col_i = 2*n_i + c_i$.
 The $k_i$ number is same with $(k_{eff})_{i-1}$ number. 
 
-For example, in $2^4 \times 2^4$ canonical matrix, 
+For example, in $2^4 \times 2^4$ Pauli basis matrix, 
 if we have 
 (1, 14), 
 (2, 13), 
@@ -614,7 +638,7 @@ if we have
 (13, 9),
 (14, 10) elements 
 were non-empty Pauli terms. 
-We can chasing the non empty unit indexes with Eq (\ref{eq:term_chasing})
+We can chase the non-empty unit indexes with Eq (\ref{eq:term_chasing})
 
 \begin{equation}
     \begin{array}{lccccc}
@@ -636,10 +660,10 @@ See \ref{alg:effective_terms} for further details.
 %See details in appendix 2. %Computational details.
 
 \begin{algorithm}
-    \caption{Effective term algorithm}\label{alg:effective_terms}
+    \caption{Effective term chasing \texttt{iTPD}}\label{alg:effective_terms}
     \begin{algorithmic}
         \Require poly = $\{((i, j))\}_{l=1}^k$ \Comment{ij converted Pauli terms}
-        \Require $M \gets$ canonical matrix of $(2^n, 2^n)$
+        \Require $M \gets$ Pauli basis matrix of $(2^n, 2^n)$
         \State matdim $\gets 2^n$
         \State steps $\gets$ n
         \State unit\_size $\gets$ 1
@@ -694,13 +718,12 @@ See \ref{alg:effective_terms} for further details.
             \State poly $\gets$ pstep
             \State unit\_size $\gets$ 2*unit\_size
         \EndFor
+        \Return{$M$}
     \end{algorithmic}
 \end{algorithm}
 
 
-
-
-\section{Benchmarks with other methods}
+\section{Benchmarks}
 
 \subsection{Complexity analysis}
 
@@ -740,11 +763,16 @@ number of steps.
 Therefore, the total time complexity is $O(n4^n)$
 
 For the effective term algorithm,
-it is very complicated for estimating time-complexity,
-however, by taking worst case of effective term, we can estimate its upper bound.
+it is very complicated for estimating time-complexity.
+As mentioned in TPD algorithm, tensorized method can 
+choose basis transformation separately\cite{Hantzko_2024}
+and effective term method determine meaningful transformation.
+Therefore, the complexity strongly depend on problem specification.
+However, by taking the worst case of effective term, we can estimate its upper bound.
 
 With initial $k = k_{eff} +d$ number non zero-terms,
-assuming that the worst case that $d=0$, we have 
+assuming that the worst case that $d=0$, and we naively calculate 
+all tensorized transformation, we have 
 
 \begin{equation}
     k_{eff, 0} \in [\frac{1}{2}4^{n}], k_{eff, i} = \frac{1}{2} k_{eff, i-1}
@@ -755,10 +783,10 @@ the total time complexity consists of
 
 \begin{equation}
     \label{eq:t_com_eterm}
-    2 n * k_{eff}^2 + 34 (2^{n+1} -1) k_{eff}
+    2 n  k_{eff}^2 + 34 (2^{n+1} -1) k_{eff}
 \end{equation} 
 
-The maximum complexity is not different in the naive version but it is still
+The maximum complexity is not different in the naive version, but it is still
 lower than any term-by-term algorithm. About the effective term algorithm,
 at some range of $k_{eff}$ value it is the most efficient but 
 at very small or worst case, the naive version is more efficient. 
@@ -778,6 +806,7 @@ the effective term algorithm is
 
 The efficient is achieved when the non-zero terms are under 0.5\% of $4^n$ number of terms.
 
+
 \begin{table*}
     \centering
     \caption{Summary of complexity of the algorithms with big-O notation.}
@@ -787,9 +816,10 @@ The efficient is achieved when the non-zero terms are under 0.5\% of $4^n$ numbe
         \hline
         \multirow{2}{8em}{Term by term}  & Common    & $O(k(f(n) +4^n))$                 & \multirow{2}{2em}{$O(4^n)$}\\
                                          & Worst     & $O(16^n)$                         &\\
+                                         \hline                                 
         \multirow{2}{8em}{Naive}         & Common    &\multirow{2}{1em}{$O(n4^n)$}        & \multirow{4}{2em}{$O(4^n)$}\\
                                          & Worst     &                                   &\\
-        \multirow{2}{8em}{Effective term}& Common    &$O(n * k_{eff}^2)$                 & \\
+        \multirow{2}{8em}{Effective term}& Common    &$O(n  k_{eff}^2)$                 & \\
                                          & Worst     &$O(n16^n)$                         & \\
         \hline                                      
     \end{tabular}
@@ -803,9 +833,9 @@ List of the fraameworks and methods are provides Pauli composition routine.
 
 \begin{itemize}
     %\item Tree approach algorithm\cite{koska_tree-approach_2024}. % decomposition 이지만, composition도 지원.
-    \item PauliComposer\cite{vidal_romero_paulicomposer_2023}.
-    \item Qiskit Pauli, to\_matrix method \cite{Qiskit}.
-    \item Pennylane, Pauli to matrix \cite{bergholm2018pennylane}. %  https://docs.pennylane.ai/en/stable/code/api/pennylane.pauli.pauli_word_to_matrix.html
+    \item PauliComposer\cite{vidal_romero_Paulicomposer_2023}.
+    \item Qiskit \texttt{Pauli}, to\_matrix method \cite{Qiskit}.
+    \item Pennylane, \texttt{Pauli} to matrix \cite{bergholm2018pennylane}. %  https://docs.pennylane.ai/en/stable/code/api/pennylane.Pauli.Pauli_word_to_matrix.html
     \item Cirq: unitary matrix transform \cite{cirq_developers_2023_10247207}. %https://quantumai.google/reference/python/cirq/PauliString and further unitary matrix routine.
 \end{itemize}
 
@@ -818,16 +848,17 @@ and they implemented the composition routine with PauliComposer method
 which uses row wise mapping.
 They provides \textit{PauliList} class as like in Pennylane. 
 The \textit{to\_matrix} routine generates rank-3 matrices for the given Pauli terms.
-However, the class does not support coefficient supports. 
+However, the class does not support coefficient supports.
+In Qiskit version > 1.0 all backend routines were replaced with Rust from numpy based in <=0.43 version.
+To compare the algorithm complexity precisely, in the benchmark, 0.43 version was used. 
 The composition needs alternative summation with coefficient multiplication.
 
 The main conversion were conducted with 4 implementations the inverse tensorized algorithm
 with using efficient term chasing routine or not, or pure python-numpy routine and numba acceleration.
-
 Therefore, the comparsion with naive tensor product method and PauliComposer method
 is enough to see Pennylane and Qiskit frameworks. 
 About the comparsion, each routine are prepared as their intended 
-data. For example, Pennylane prepares the single Pauli term as Pauli object class
+data. For example, Pennylane prepares the single Pauli term as \texttt{Pauli} object class
 , and Qiskit requires them to be in the symplectic representation.
 
 The estimation was conducted for $n$-qubit system random matrices from $n=1$ to $n=9$
@@ -850,9 +881,9 @@ The system specification and libraries are denoted on Table \ref{table:specs}
      Python         & {3.11.8} \\
      Numpy\cite{harris2020array} & 1.26.4\\
      Scipy\cite{2020SciPy-NMeth} &  1.13.0 \\
-     Qiskit\cite{Qiskit}         & 1.0.2  \\  
+     Qiskit\cite{Qiskit}         & 0.43  \\  
      Pennylane\cite{bergholm2018pennylane}  &  0.35.1 \\
-     PauliComposer\cite{vidal_romero_paulicomposer_2023} & Original paper version.  \\ % Fixed column spanning syntax
+     PauliComposer\cite{vidal_romero_Paulicomposer_2023} & Original paper version.  \\ % Fixed column spanning syntax
     \hline
     \end{tabular}
 \end{table}
@@ -863,7 +894,7 @@ The system specification and libraries are denoted on Table \ref{table:specs}
 In Fig (\ref{fig:results}), we tested the Pauli-composition methods in various quantum frameworks.
 There was no method considering Pauli-polynomials for matrix conversion, so that all the methods are 
 term-by-term methods.
-\textit{paulicomposer} has a $f(n) = 2^n$ time complexity, therefore, the total composition complexity is 
+{PauliComposer} has a $f(n) = 2^n$ time complexity, therefore, the total composition complexity is 
 $8^n$ and standard tensor product method has $f(n) = 4^n$ time complexity, so that the total complexity is 
 $2 \cdot 8^n - 4^n$.
 
@@ -896,27 +927,25 @@ it overwhelms the term-by-term methods.
 
 \section{Conclusion}
 
-In the paper, tensorized pauli composition(\texttt{TPC}) algorithm was designed 
-using a proper canonical matrix and inverse Tensorizerd Pauli decomposition(\texttt{TPD}) algorithm\cite{Hantzko_2024}.
+In the paper, tensorized Pauli composition(\texttt{TPC}) algorithm was designed 
+using a proper Pauli basis matrix and inverse Tensorizerd Pauli decomposition(\texttt{TPD}) algorithm\cite{Hantzko_2024}.
 \texttt{TPD} was a sequential basis transformation of the given matrix.
 The common XZ symplectic representation is one type of the transformation.
-A simple conversion between the symplectic representation and an index of the canonical matrix of \texttt{TPD}, 
+A simple conversion between the symplectic representation and an index of the Pauli basis matrix of \texttt{TPD}, 
 was investigated and the inverse composition algorithms were designed.
-Furthermore, a modified algorithm of \texttt{TPC} was desigend by adding an effective term chasing routine.  
-The chasing routine eliminate unnecessary terms in the naive \texttt{TPC} process,
+Furthermore, a modified algorithm of \texttt{TPC} was designed by adding an effective term chasing routine.  
+The chasing routine eliminates unnecessary terms in the naive \texttt{TPC} process,
 so for sparse Pauli summation case, the algorithm is expected to show better result than naive version.
 
-The algorithms are designed to compose the multiple terms at once, 
-so that achieves better computational complexity in Pauli polynomial composition, in time and spatial both. 
-The naive composition algorithm consists of basis transformation mapping between 
-the canonical matrix and the original matrix representation.
+The algorithms are designed to compose the multiple terms simultaneously, thereby achieving better computational complexity in Pauli polynomial composition, in time and spatial both domains. 
+The naive composition algorithm comprises a basis transformation mapping between the Pauli basis matrix and the original matrix representation.
 
 Comparing to the previous term-by-term methods which have $O(16^n + 4^n(f(n)-1))$ complexity in the worst case, 
-the naive algorithm is at least, twice faster than the common term-by-term methods  with $O(8^n)$ complexity. 
+the naive algorithm is at least, twice faster than the common term-by-term methods  with $O(n4^n)$ complexity. 
 It means that we can construct the matrix with computational basis corresponding to the given 
 Pauli-polynomial at process of the algorithm. 
 The inverse algorithm could chase effective terms during the composition process. 
-However, chasing routine requires many computational costs it is not efficient as much as the naive version,
+However, the chasing routine incurs significant computational costs and is not as efficient as the naive version,
 and even comparable with the term-by-term methods with $O(n16^n)$ complexity in the worst case.
 
 In addition, the composition speed benchmark between the current quantum computing frameworks, Qiskit, Pennylane, and naive
@@ -931,13 +960,13 @@ The effective term algorithm could chase the effective terms, however in the cur
 was not noticible in the implementation.
 
 \section*{Acknowledgments}
-The research was funded by Quantum Sapiens Human resources center.
+The research was funded by the Quantum Sapiens Human Resources Center.
 
 \section*{Data and code available}
 The research was conducted for implementing a sub-module of OptTrot python package for 
 fast manipulation and optimization routine for Hamiltonian.
 OptTrot is a quantum computing frameworks for optimizing Trotter circuit on gate model computer.
-The benchmarked code and data are on Github repository\cite{kim_2024}.
+The benchmarked code and data are on Github repository\cite{kim_2024_TPC}.
 %Bibliography
 \bibliographystyle{unsrt}  
 \bibliography{references}  

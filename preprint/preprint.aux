@@ -10,41 +10,46 @@
 \newlabel{eq:tpd_transform}{{3}{1}{Tensorized Pauli Decomposition Algorithm}{equation.2.3}{}}
 \citation{reggio_fast_2023}
 \citation{reggio_fast_2023}
-\citation{Qiskit}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Iterative diagram of Tensorized Pauli Decomposition algorithm.}}{2}{figure.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:tpd_diagram}{{1}{2}{Iterative diagram of Tensorized Pauli Decomposition algorithm}{figure.caption.1}{}}
 \newlabel{eq:vec_tpd}{{6}{2}{Tensorized Pauli Decomposition Algorithm}{equation.2.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Symplectic representation of Pauli element}{2}{section.3}\protected@file@percent }
 \newlabel{eq:xz_decompose}{{10}{2}{Symplectic representation of Pauli element}{equation.3.10}{}}
+\newlabel{eq:symplectic_nznx}{{13}{2}{Symplectic representation of Pauli element}{equation.3.13}{}}
+\citation{Qiskit}
 \citation{kim_2024}
-\newlabel{eq:symplectic_nznx}{{13}{3}{Symplectic representation of Pauli element}{equation.3.13}{}}
-\newlabel{eq:canonical_sym}{{20}{3}{Symplectic representation of Pauli element}{equation.3.20}{}}
+\newlabel{eq:Pauli basis_sym}{{20}{3}{Symplectic representation of Pauli element}{equation.3.20}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}TPD for symplectic representation}{3}{subsection.3.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Index diffusion diagram by TPD decomposition process}}{3}{figure.caption.2}\protected@file@percent }
 \newlabel{fig:index_change_tpd}{{2}{3}{Index diffusion diagram by TPD decomposition process}{figure.caption.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Symplectic tuple to canonical matrix}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Symplectic tuple to Pauli basis matrix}{3}{subsection.3.2}\protected@file@percent }
 \newlabel{thm:index_conversion}{{1}{3}{}{theorem.1}{}}
 \newlabel{eq:ij_nznx}{{21}{3}{}{equation.3.21}{}}
+\citation{dion2024efficientlymanipulatingpaulistrings}
+\citation{kim_opttrot}
 \citation{Hantzko_2024}
-\@writefile{toc}{\contentsline {section}{\numberline {4}iTPD algorithm}{4}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Naive version}{4}{subsection.4.1}\protected@file@percent }
-\newlabel{eq:restore}{{25}{4}{Naive version}{equation.4.25}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Canonical matrix construction}}{4}{algorithm.1}\protected@file@percent }
-\newlabel{alg:ppoly_to_canonical}{{1}{4}{Canonical matrix construction}{algorithm.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Efffective term chasing}{4}{subsection.4.2}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Naive Inverse Composition Algorithm}}{4}{algorithm.2}\protected@file@percent }
-\newlabel{alg:naive_inverse}{{2}{4}{Naive Inverse Composition Algorithm}{algorithm.2}{}}
-\newlabel{eq:term_chasing}{{27}{4}{Efffective term chasing}{equation.4.27}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Benchmarks with other methods}{5}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Complexity analysis}{5}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Term-by-term methods}{5}{subsubsection.5.1.1}\protected@file@percent }
-\newlabel{eq:k-complexity}{{29}{5}{Term-by-term methods}{equation.5.29}{}}
-\newlabel{eq:max_complexity}{{30}{5}{Term-by-term methods}{equation.5.30}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Algorithm complexity}{5}{subsubsection.5.1.2}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Effective term algorithm}}{5}{algorithm.3}\protected@file@percent }
-\newlabel{alg:effective_terms}{{3}{5}{Effective term algorithm}{algorithm.3}{}}
-\citation{vidal_romero_paulicomposer_2023}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Minor improvement in TPD}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}iTPD algorithm}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Naive version}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{eq:restore}{{25}{4}{Naive version}{equation.5.25}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Symplectic code conversion}}{4}{algorithm.1}\protected@file@percent }
+\newlabel{alg:ppoly_to_Pauli basis}{{1}{4}{Symplectic code conversion}{algorithm.1}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Naive \texttt  {iTPD}}}{4}{algorithm.2}\protected@file@percent }
+\newlabel{alg:naive_inverse}{{2}{4}{Naive \texttt {iTPD}}{algorithm.2}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces TPC}}{4}{algorithm.3}\protected@file@percent }
+\newlabel{alg:TPC}{{3}{4}{TPC}{algorithm.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Effective term chasing}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{eq:term_chasing}{{27}{5}{Effective term chasing}{equation.5.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Benchmarks}{5}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Complexity analysis}{5}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Term-by-term methods}{5}{subsubsection.6.1.1}\protected@file@percent }
+\newlabel{eq:k-complexity}{{29}{5}{Term-by-term methods}{equation.6.29}{}}
+\newlabel{eq:max_complexity}{{30}{5}{Term-by-term methods}{equation.6.30}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Effective term chasing \texttt  {iTPD}}}{5}{algorithm.4}\protected@file@percent }
+\newlabel{alg:effective_terms}{{4}{5}{Effective term chasing \texttt {iTPD}}{algorithm.4}{}}
+\citation{Hantzko_2024}
+\citation{vidal_romero_Paulicomposer_2023}
 \citation{Qiskit}
 \citation{bergholm2018pennylane}
 \citation{cirq_developers_2023_10247207}
@@ -52,28 +57,31 @@
 \citation{2020SciPy-NMeth}
 \citation{Qiskit}
 \citation{bergholm2018pennylane}
-\citation{vidal_romero_paulicomposer_2023}
+\citation{vidal_romero_Paulicomposer_2023}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}Algorithm complexity}{6}{subsubsection.6.1.2}\protected@file@percent }
+\newlabel{eq:t_com_eterm}{{32}{6}{Algorithm complexity}{equation.6.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Benchmarks with the other frameworks}{6}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Results}{6}{subsection.6.3}\protected@file@percent }
 \citation{Hantzko_2024}
-\newlabel{eq:t_com_eterm}{{32}{6}{Algorithm complexity}{equation.5.32}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Benchmarks with the other frameworks}{6}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Results}{6}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
-\citation{kim_2024}
+\citation{kim_2024_TPC}
 \bibstyle{unsrt}
 \bibdata{references}
 \bibcite{Hantzko_2024}{{1}{}{{}}{{}}}
 \bibcite{reggio_fast_2023}{{2}{}{{}}{{}}}
 \bibcite{Qiskit}{{3}{}{{}}{{}}}
-\bibcite{kim_2024}{{4}{}{{}}{{}}}
-\bibcite{vidal_romero_paulicomposer_2023}{{5}{}{{}}{{}}}
-\bibcite{bergholm2018pennylane}{{6}{}{{}}{{}}}
-\bibcite{cirq_developers_2023_10247207}{{7}{}{{}}{{}}}
-\bibcite{harris2020array}{{8}{}{{}}{{}}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Summary of complexity of the algorithms with big-O notation.}}{7}{table.caption.3}\protected@file@percent }
 \newlabel{table:complexity}{{1}{7}{Summary of complexity of the algorithms with big-O notation}{table.caption.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces System specification for simulation.}}{7}{table.caption.4}\protected@file@percent }
 \newlabel{table:specs}{{2}{7}{System specification for simulation}{table.caption.4}{}}
-\bibcite{2020SciPy-NMeth}{{9}{}{{}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
+\bibcite{dion2024efficientlymanipulatingpaulistrings}{{4}{}{{}}{{}}}
+\bibcite{kim_opttrot}{{5}{}{{}}{{}}}
+\bibcite{vidal_romero_Paulicomposer_2023}{{6}{}{{}}{{}}}
+\bibcite{bergholm2018pennylane}{{7}{}{{}}{{}}}
+\bibcite{cirq_developers_2023_10247207}{{8}{}{{}}{{}}}
+\bibcite{harris2020array}{{9}{}{{}}{{}}}
+\bibcite{2020SciPy-NMeth}{{10}{}{{}}{{}}}
+\bibcite{kim_2024_TPC}{{11}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
 \@writefile{toc}{\contentsline {section}{\numberline {A}Computational aspects}{8}{appendix.A}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Benchmarks for matrix composition of Puali polynomials with the algorithm \ref {alg:naive_inverse}, \ref {alg:effective_terms} with Qiskit, Pennylane, PauliComposer, and standard tensor product methods, for $n=1$ to $n=9$. The percentages of the each case represents how many coefficients are non-empty in $4^n$ number of spaces.}}{9}{figure.caption.5}\protected@file@percent }
