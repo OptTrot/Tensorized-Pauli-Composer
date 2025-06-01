@@ -1,2 +1,5 @@
 
 *.code-workspace
+tpc_rust/
+tpc/c_core/
+test/
