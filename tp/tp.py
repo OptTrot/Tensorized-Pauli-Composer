@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Tuple, Literal, Union
 import numpy as np
 from scipy.sparse import coo_matrix
 from .utils import pstr2ij_code, ij_code2_pstr
@@ -23,7 +23,14 @@ def pauli_basis2ppoly(cmat:np.matrix):
     return ppoly
 
 #-------------------------------------------------------------------
-def tpd(H:np.matrix)->np.matrix:
+def tpd(H:np.matrix, index:Literal["ij", "xz"] = "ij")->np.matrix:
+    if index =="ij":
+        tpd_ij(H)
+    elif index == "xz":
+        tpd_xz(H)
+
+
+def tpd_ij(H:np.matrix)->np.matrix:
     """Tensorized matrix construction method from weighted Pauli sum.
     Args:
         H (np.matrix): Pauli_basis matrix of Pauli elements
@@ -109,8 +116,17 @@ def tpd_xz(H:np.matrix)->np.matrix:
     H *= (1/(2**n))
     return H
 
-def itpd(ppoly:list[Tuple[str, float]])->np.matrix:
-    return itpd_core(ppoly2pauli_basis(ppoly))
+#------------------------------------------
+def itpd(ppoly:Union[np.matrix, list[Tuple[str, float]]], is_mat = False, is_sparse=False, eff=False)->np.matrix:
+   
+    if eff:
+        return itpd_eff(ppoly, is_mat, is_sparse)
+    else:
+        if is_mat:
+            mat = ppoly.toarray() if is_sparse else ppoly
+        else:
+            mat = ppoly2pauli_basis(ppoly)
+        return itpd_core(mat)
 
 def itpd_core(mat :np.matrix)->np.matrix:
     """Tensorized matrix construction method from weighted Pauli sum.
@@ -153,9 +169,22 @@ def itpd_core(mat :np.matrix)->np.matrix:
         unit_size =int(2*unit_size)
     return mat
 
-def itpd_eff(ppoly):
-    pauli_basis = ppoly2pauli_basis(ppoly, sparse=True)
-    return itpd_eff_core(pauli_basis.toarray(), np.stack([pauli_basis.row, pauli_basis.col]).T)
+def itpd_eff(ppoly, is_mat= False, is_sparse=False):
+    if is_mat:
+        if is_sparse:
+            pauli_basis = ppoly
+            p_index = np.stack([pauli_basis.row, pauli_basis.col]).T
+
+            p_mat = ppoly.toarray()
+        else: # dense
+            pauli_basis = coo_matrix(ppoly)
+            p_index = np.stack([pauli_basis.row, pauli_basis.col]).T
+            p_mat = ppoly
+        
+        itpd_eff_core(p_mat, p_index)
+    else:
+        pauli_basis = ppoly2pauli_basis(ppoly, sparse=True)
+        return itpd_eff_core(pauli_basis.toarray(), np.stack([pauli_basis.row, pauli_basis.col]).T)
 
 
 def itpd_eff_core(
