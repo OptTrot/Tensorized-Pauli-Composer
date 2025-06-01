@@ -13,4 +13,4 @@
 
 
 from tp.tp import *
-from tp.utils import utils
+from tp import utils

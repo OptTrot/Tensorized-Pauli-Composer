@@ -8,7 +8,7 @@ license-files = ["License"]
 
 [project]
 name = "opttrot-tp"
-version = "0.0.1"
+version = "0.0.3"
 description = "A simple Hamiltonian matrix decompose and compose routines based on tensorized method."
 readme = "README.md"
 requires-python = ">=3.7"
