@@ -3,3 +3,5 @@
 tpc_rust/
 tpc/c_core/
 test/
+dist/
+opttrot_tp.egg-info/
