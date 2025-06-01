@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["tp"]
+license-files = ["License"]  
+
+[project]
+name = "opttrot-tp"
+version = "0.0.1"
+description = "A simple Hamiltonian matrix decompose and compose routines based on tensorized method."
+readme = "README.md"
+requires-python = ">=3.7"
+
+authors = [
+  { name = "Hyunseong Kim", email = "Hyunseong.Kim@rice.edu" },
+]
+
+license = "MIT"
+
+dependencies = [
+  "numpy>=1.20.0",
+  "scipy"
+]
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+
+keywords = ["Pauli", "Matrix", "Hamiltonian", "Decomposition", "Composition"]
+
+[project.urls]
+Homepage = "https://github.com/OptTrot/Tensorized-Pauli-Composer"
+Issues = "https://github.com/OptTrot/Tensorized-Pauli-Composer/issues"
