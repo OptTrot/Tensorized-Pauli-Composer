@@ -15,3 +15,7 @@ preprint.
 ```
 Kim, H. (2024). TENSORIZED PAULI COMPOSER. Quantum Thread 2024, Seoul. Zenodo. https://doi.org/10.5281/zenodo.14245728
 ```
+
+## TODO
+
+- Diagonal decompositio, composition routines.
