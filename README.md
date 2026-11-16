@@ -9,6 +9,34 @@ and inversed Tensorized Pauli Decomposition([TPD](https://iopscience.iop.org/art
 - `data`: Benchmark data and source codes, initial implementation of OptTrot library.
 - `preprint`: Tech document and theory.
 
+
+### Speed comparsion
+
+A(xN.N): B took N.N times more slower than A.
+In qubits < 12
+
+|Opeartion|Faster|
+|:-------:|:----:|
+|o->mat   | PauliPoly(x2-1.2)| 
+|mat->o   | Qiskit(x1.2)| 
+|Addition | PauliPoly(x2) |
+|Mat Mul  | PauliPoly(x Exponential) |
+
+
+Single Pauli term
+
+|Qiskit| TPC | Numpy Corresponding|
+|:------:|:-----:|:-------------------:|
+|27μs+-161ns| 1.31μs+-3.89ns | 11.7μs +- 102ns|
+
+
+Pauli poly ( Matrix construction 12 qubits)
+|Qiskit| TPC |
+|:------:|:-----:|
+|33.2 s ± 1.98 s|3.48 s ± 12.3 ms|
+
+
+
 To cite the software, please refer [Zenodo](https://zenodo.org/records/14245728) 
 preprint.
 
